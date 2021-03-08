@@ -1,0 +1,44 @@
+# depslib dependency file v1.0
+1615112035 source:c:\development\game\main.cpp
+	<iostream>
+	"CommonFunc.h"
+	"BaseObject.h"
+	"MainObject.h"
+
+1613415337 source:c:\development\game\commonfunc.cpp
+	"CommonFunc.h"
+	<iostream>
+
+1614518001 c:\development\game\commonfunc.h
+	<iostream>
+	<SDL.h>
+	<string>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+
+1615109417 source:c:\development\game\baseobject.cpp
+	"BaseObject.h"
+	<iostream>
+
+1614516477 c:\development\game\baseobject.h
+	"CommonFunc.h"
+
+1615112035 c:\development\game\mainobject.h
+	"CommonFunc.h"
+	"BaseObject.h"
+	"BulletObject.h"
+	<vector>
+
+1615121519 source:c:\development\game\mainobject.cpp
+	<iostream>
+	"MainObject.h"
+
+1615129534 source:c:\development\game\bulletoject.cpp
+	"BulletObject.h"
+	<iostream>
+
+1615121320 c:\development\game\bulletobject.h
+	"BaseObject.h"
+	"CommonFunc.h"
+
