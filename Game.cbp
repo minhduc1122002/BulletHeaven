@@ -39,6 +39,8 @@
 		<Unit filename="CommonFunc.h" />
 		<Unit filename="MainObject.cpp" />
 		<Unit filename="MainObject.h" />
+		<Unit filename="ThreatObject.cpp" />
+		<Unit filename="ThreatObject.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

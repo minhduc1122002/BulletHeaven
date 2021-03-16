@@ -1,8 +1,11 @@
 #include <iostream>
+#include <vector>
 #include "CommonFunc.h"
 #include "BaseObject.h"
 #include "MainObject.h"
+#include "ThreatObject.h"
 
+using namespace std;
 BaseObject g_background;
 
 bool InitData()
@@ -52,8 +55,34 @@ void close()
     IMG_Quit();
     SDL_Quit();
 }
+
+vector<ThreatObject*> MakeThreatList()
+{
+    vector<ThreatObject*> Threat_List;
+
+    ThreatObject* threat_object=new ThreatObject[2];
+    for(int i=0;i<2;i++)
+    {
+        ThreatObject* p_threat=(threat_object+i);
+        if(p_threat!=NULL)
+        {
+
+            p_threat->LoadImg("img//SpaceThreat1.png",g_screen);
+            p_threat->set_clip();
+            p_threat->set_x_pos_((i+1)*SCREEN_WIDTH/3);
+            p_threat->set_y_pos_(0);
+            p_threat->set_x_val_(0.5);
+            p_threat->set_y_val_(0.5);
+
+            Threat_List.push_back(p_threat);
+        }
+    }
+    return Threat_List;
+}
+
 int main( int argc, char *argv[] )
 {
+
     if(InitData()==false)
         return -1;
     if(LoadBackground()==false)
@@ -63,12 +92,14 @@ int main( int argc, char *argv[] )
     spaceship.LoadImg("img//spaceship_up.png",g_screen);
     spaceship.set_clip();
 
+    vector<ThreatObject*> Threat_List=MakeThreatList();
 
     bool is_quit=false;
     while(!is_quit)
     {
         while(SDL_PollEvent(&g_event)!=0)
         {
+
             if(g_event.type==SDL_QUIT)
             {
                 is_quit=true;
@@ -78,10 +109,27 @@ int main( int argc, char *argv[] )
         SDL_SetRenderDrawColor(g_screen,RENDER_DRAW_COLOR,RENDER_DRAW_COLOR,RENDER_DRAW_COLOR,RENDER_DRAW_COLOR);
         SDL_RenderClear(g_screen);
         g_background.Render(g_screen,NULL);
-        spaceship.HandleBullet(g_screen);
+        spaceship.HandleBullet1(g_screen);
         spaceship.Show(g_screen);
         spaceship.MovePlayer();
+        for(int i=0;i<Threat_List.size();i++)
+        {
+            ThreatObject *p_threat=Threat_List.at(i);
+            if(p_threat!=NULL)
+            {
+                p_threat->Show(g_screen);
+                p_threat->MoveThreat();
+                if((p_threat->get_y_pos_())%200==0)
+                {
+                    BulletObject*p_bullet1=new BulletObject();
+                    p_threat->InitBullet(p_bullet1,g_screen);
+                }
+                p_threat->MakeBullet(g_screen,SCREEN_WIDTH,SCREEN_HEIGHT);
+            }
+        }
         SDL_RenderPresent(g_screen);
+
+
     }
     close();
     return 0;

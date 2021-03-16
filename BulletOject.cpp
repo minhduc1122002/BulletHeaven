@@ -13,7 +13,7 @@ BulletObject::~BulletObject()
 
 }
 
-void BulletObject::HandleMove(const int &x_border,const int &y_border)
+void BulletObject::HandleMove(const int &x_border,const int &y_border, const float &angle)
 {
     if(bullet_direction_==Dir_Right)
     {
@@ -33,16 +33,32 @@ void BulletObject::HandleMove(const int &x_border,const int &y_border)
     }
     else if(bullet_direction_==Dir_Down)
     {
-        rect_.y+=y_val_;
-        if(rect_.y>y_border)
+        if(angle==90)
+        {
+            rect_.y+=y_val_;
+        }
+        else if(angle==45)
+        {
+            rect_.y+=y_val_;
+            rect_.x+=x_val_;
+        }
+        if(rect_.y>y_border || rect_.x>x_border)
         {
             is_move_=false;
         }
     }
     else if(bullet_direction_==Dir_Up)
     {
-        rect_.y-=y_val_;
-        if(rect_.y<0)
+        if(angle==90)
+        {
+            rect_.y-=y_val_;
+        }
+        else if(angle==45)
+        {
+            rect_.y-=y_val_;
+            rect_.x-=x_val_;
+        }
+        if(rect_.y<0 || rect_.x<0)
         {
             is_move_=false;
         }

@@ -13,8 +13,9 @@ static SDL_Renderer* g_screen=NULL;
 static SDL_Event g_event;
 
 // Screen
-const int SCREEN_WIDTH=960;
-const int SCREEN_HEIGHT=540;
+const int FPS=200;
+const int SCREEN_WIDTH=800;
+const int SCREEN_HEIGHT=1000;
 const int SCREEN_BPP=32;
 
 const int COLOR_KEY_R=167;

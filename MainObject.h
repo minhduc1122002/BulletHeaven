@@ -6,8 +6,8 @@
 #include "BulletObject.h"
 #include <vector>
 
-#define SPEED 0.4
-class MainObject :public BaseObject
+#define SPEED 0.8
+class MainObject:public BaseObject
 {
 public:
     MainObject();
@@ -26,16 +26,18 @@ public:
     void set_clip();
 
     void MovePlayer();
-    void set_bullet_list(std::vector<BulletObject*> bullet_list)
+    void set_bullet_list1(std::vector<BulletObject*> bullet_list1)
     {
-        p_bullet_list_=bullet_list;
+        p_bullet_list1_=bullet_list1;
     }
-    std::vector<BulletObject*> get_bullet_list() const {return p_bullet_list_;}
-    void HandleBullet(SDL_Renderer* des);
+    std::vector<BulletObject*> get_bullet_list1() const {return p_bullet_list1_;}
+    void HandleBullet1(SDL_Renderer* des);
+    void HandleBullet2(SDL_Renderer* des);
+
+
 private:
-    std::vector<BulletObject*> p_bullet_list_;
-    float x_val_;
-    float y_val_;
+    std::vector<BulletObject*> p_bullet_list1_;
+    std::vector<BulletObject*> p_bullet_list2_;
 
     float x_pos_;
     float y_pos_;
@@ -43,7 +45,7 @@ private:
     int width_frame_;
     int height_frame_;
 
-    SDL_Rect frame_clip_[6];
+    SDL_Rect frame_clip_[8];
     Input input_type_;
     int frame_;
     int status_;

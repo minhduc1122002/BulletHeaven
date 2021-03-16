@@ -1,15 +1,17 @@
 # depslib dependency file v1.0
-1615112035 source:c:\development\game\main.cpp
+1615893652 source:c:\development\game\main.cpp
 	<iostream>
+	<vector>
 	"CommonFunc.h"
 	"BaseObject.h"
 	"MainObject.h"
+	"ThreatObject.h"
 
 1613415337 source:c:\development\game\commonfunc.cpp
 	"CommonFunc.h"
 	<iostream>
 
-1614518001 c:\development\game\commonfunc.h
+1615737838 c:\development\game\commonfunc.h
 	<iostream>
 	<SDL.h>
 	<string>
@@ -17,28 +19,47 @@
 	<SDL_mixer.h>
 	<SDL_ttf.h>
 
-1615109417 source:c:\development\game\baseobject.cpp
+1615893518 source:c:\development\game\baseobject.cpp
 	"BaseObject.h"
 	<iostream>
 
 1614516477 c:\development\game\baseobject.h
 	"CommonFunc.h"
 
-1615112035 c:\development\game\mainobject.h
+1615719986 c:\development\game\mainobject.h
 	"CommonFunc.h"
 	"BaseObject.h"
 	"BulletObject.h"
 	<vector>
 
-1615121519 source:c:\development\game\mainobject.cpp
+1615769207 source:c:\development\game\mainobject.cpp
 	<iostream>
 	"MainObject.h"
 
-1615129534 source:c:\development\game\bulletoject.cpp
+1615868209 source:c:\development\game\bulletoject.cpp
 	"BulletObject.h"
 	<iostream>
 
-1615121320 c:\development\game\bulletobject.h
+1615870568 c:\development\game\bulletobject.h
 	"BaseObject.h"
 	"CommonFunc.h"
+
+1615893565 source:c:\development\game\threatobject.cpp
+	<iostream>
+	"ThreatObject.h"
+	"CommonFunc.h"
+
+1615870987 c:\development\game\threatobject.h
+	<iostream>
+	"CommonFunc.h"
+	"BaseObject.h"
+	"BulletObject.h"
+	<vector>
+
+1615737002 source:c:\development\game\timer.cpp
+	<iostream>
+	"Timer.h"
+	"CommonFunc.h"
+
+1615736990 c:\development\game\timer.h
 

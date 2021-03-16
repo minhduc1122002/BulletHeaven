@@ -3,7 +3,7 @@
 
 #include "BaseObject.h"
 #include "CommonFunc.h"
-
+#define Num_of_Threats 5
 class BulletObject : public BaseObject
 {
 public:
@@ -28,12 +28,13 @@ public:
 
     void set_bullet_direction(const int &bulletDir) {bullet_direction_=bulletDir;}
     int get_bullet_direction() const {return bullet_direction_;}
-    void HandleMove(const int &x_border,const int &y_border);
+    void HandleMove(const int &x_border,const int &y_border, const float &angle);
 
 private:
     int x_val_;
     int y_val_;
     bool is_move_;
+
     int bullet_direction_;
 };
 
