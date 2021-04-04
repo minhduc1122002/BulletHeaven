@@ -13,54 +13,16 @@ BulletObject::~BulletObject()
 
 }
 
-void BulletObject::HandleMove(const int &x_border,const int &y_border, const float &angle)
+void BulletObject::HandleMove(const int &x_border,const int &y_border, const double &angle)
 {
-    if(bullet_direction_==Dir_Right)
+    rect_.y+=y_val_*sin(angle*PI/180);
+    rect_.x+=x_val_*cos(angle*PI/180);
+    if(rect_.y<0 || rect_.y>y_border)
     {
-        rect_.x+=x_val_;
-        if(rect_.x>x_border)
-        {
-            is_move_=false;
-        }
+        is_move_=false;
     }
-    else if(bullet_direction_==Dir_Left)
+    if(rect_.x<0 || rect_.x>x_border)
     {
-        rect_.x-=x_val_;
-        if(rect_.x<0)
-        {
-            is_move_=false;
-        }
-    }
-    else if(bullet_direction_==Dir_Down)
-    {
-        if(angle==90)
-        {
-            rect_.y+=y_val_;
-        }
-        else if(angle==45)
-        {
-            rect_.y+=y_val_;
-            rect_.x+=x_val_;
-        }
-        if(rect_.y>y_border || rect_.x>x_border)
-        {
-            is_move_=false;
-        }
-    }
-    else if(bullet_direction_==Dir_Up)
-    {
-        if(angle==90)
-        {
-            rect_.y-=y_val_;
-        }
-        else if(angle==45)
-        {
-            rect_.y-=y_val_;
-            rect_.x-=x_val_;
-        }
-        if(rect_.y<0 || rect_.x<0)
-        {
-            is_move_=false;
-        }
+        is_move_=false;
     }
 }

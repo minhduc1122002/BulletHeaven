@@ -33,10 +33,22 @@ bool BaseObject::LoadImg(std::string path,SDL_Renderer* screen)
     return p_object_!=NULL;
 }
 
+void BaseObject::MoveBackGround(SDL_Renderer* des,const SDL_Rect* clip /*- NULL*/)
+{
+    SDL_Rect renderquad1={rect_.x,rect_.y,rect_.w,rect_.h};
+    SDL_RenderCopy(des,p_object_,clip,&renderquad1);
+    SDL_Rect renderquad2={rect_.x,rect_.y-SCREEN_HEIGHT,rect_.w,rect_.h};
+    SDL_RenderCopy(des,p_object_,clip,&renderquad2);
+    rect_.y+=1;
+    if(rect_.y>=SCREEN_HEIGHT)
+    {
+        rect_.y=0;
+    }
+}
 void BaseObject::Render(SDL_Renderer* des,const SDL_Rect* clip /*- NULL*/)
 {
-    SDL_Rect renderquad={rect_.x,rect_.y,rect_.w,rect_.h};
-    SDL_RenderCopy(des,p_object_,clip,&renderquad);
+    SDL_Rect renderquad1={rect_.x,rect_.y,rect_.w,rect_.h};
+    SDL_RenderCopy(des,p_object_,clip,&renderquad1);
 }
 void BaseObject::Free()
 {
@@ -48,5 +60,6 @@ void BaseObject::Free()
         rect_.h=0;
     }
 }
+
 
 

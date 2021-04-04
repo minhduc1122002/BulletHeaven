@@ -8,11 +8,12 @@ MainObject::MainObject()
     y_pos_=SCREEN_HEIGHT-100;
     width_frame_=0;
     height_frame_=0;
-    status_=-1;
+    status_=Go_Up;
     input_type_.left_=0;
     input_type_.right_=0;
     input_type_.down_=0;
     input_type_.up_=0;
+    life=3;
 }
 
 MainObject::~MainObject()
@@ -36,7 +37,7 @@ void MainObject::set_clip()
 {
     if(width_frame_>0 && height_frame_>0)
     {
-        for(int i=0;i<8;i++)
+        for(int i=0;i<Num_of_Frame_MainObject;i++)
         {
             frame_clip_[i].x=0+i*(width_frame_);
             frame_clip_[i].y=0;
@@ -86,6 +87,16 @@ void MainObject::Show(SDL_Renderer* des)
     SDL_Rect renderQuad= {rect_.x,rect_.y,width_frame_,height_frame_};
 
     SDL_RenderCopy(des,p_object_,current_clip,&renderQuad);
+}
+
+SDL_Rect MainObject::GetRectFrame()
+{
+    SDL_Rect rect;
+    rect.x=rect_.x;
+    rect.y=rect_.y;
+    rect.w=width_frame_;
+    rect.h=height_frame_;
+    return rect;
 }
 
 void MainObject::HandleInputAction(SDL_Event events, SDL_Renderer* screen)
@@ -157,37 +168,11 @@ void MainObject::HandleInputAction(SDL_Event events, SDL_Renderer* screen)
         if(events.button.button==SDL_BUTTON_LEFT)
         {
             BulletObject* p_bullet1=new BulletObject();
-            /*if(status_==Turn_Left)
-            {
-                p_bullet->LoadImg("img//bullet1.png",screen);
-                p_bullet->set_bullet_direction(BulletObject::Dir_Left);
-                p_bullet->SetRect(this->rect_.x+width_frame_-40,rect_.y-height_frame_*0.1+12);
-            }
-            else if(status_==Turn_Right)
-            {
-                p_bullet->LoadImg("img//bullet1.png",screen);
-                p_bullet->set_bullet_direction(BulletObject::Dir_Right);
-                p_bullet->SetRect(this->rect_.x+width_frame_-40,rect_.y-height_frame_*0.1+12);
-            }
-            else if(status_==Go_Down)
-            {
-                p_bullet->LoadImg("img//bullet2.png",screen);
-                p_bullet->set_bullet_direction(BulletObject::Dir_Down);
-                p_bullet->SetRect(this->rect_.x+width_frame_-58,rect_.y+height_frame_*0.2);
-            }
-            else if(status_==Go_Up)
-            {
-                p_bullet->LoadImg("img//bullet2.png",screen);
-                p_bullet->set_bullet_direction(BulletObject::Dir_Up);
-                p_bullet->SetRect(this->rect_.x+width_frame_-58,rect_.y+height_frame_*0.2);
-            }*/
-
             p_bullet1->LoadImg("img//bullet.png",screen);
-            p_bullet1->set_bullet_direction(BulletObject::Dir_Up);
             p_bullet1->SetRect(this->rect_.x+width_frame_-50,rect_.y+height_frame_*0.1);
 
-            p_bullet1->set_x_val(1);
-            p_bullet1->set_y_val(1);
+            p_bullet1->set_x_val(2);
+            p_bullet1->set_y_val(2);
             p_bullet1->set_is_move(true);
 
             p_bullet_list1_.push_back(p_bullet1);
@@ -204,7 +189,7 @@ void MainObject::HandleBullet1(SDL_Renderer* des)
         {
             if(p_bullet1->get_is_move()==true)
             {
-                p_bullet1->HandleMove(SCREEN_WIDTH,SCREEN_HEIGHT,90);
+                p_bullet1->HandleMove(SCREEN_WIDTH,SCREEN_HEIGHT,-90);
                 p_bullet1->Render(des);
             }
             else
@@ -227,15 +212,15 @@ void MainObject::MovePlayer()
         x_pos_-=SPEED;
         if(x_pos_<0)
         {
-            x_pos_=SCREEN_WIDTH;
+            x_pos_=0;
         }
     }
     if(input_type_.right_==1)
     {
         x_pos_+=SPEED;
-        if(x_pos_>SCREEN_WIDTH)
+        if(x_pos_>SCREEN_WIDTH-width_frame_)
         {
-            x_pos_=0;
+            x_pos_=SCREEN_WIDTH-width_frame_;
         }
     }
     if(input_type_.down_==1)
@@ -252,6 +237,21 @@ void MainObject::MovePlayer()
         if(y_pos_<0)
         {
             y_pos_=0;
+        }
+    }
+}
+
+void MainObject::RemoveBullet(const int &index)
+{
+    int n=p_bullet_list1_.size();
+    if(n>0 && index<n)
+    {
+        BulletObject*p_bullet=p_bullet_list1_.at(index);
+        p_bullet_list1_.erase(p_bullet_list1_.begin()+index);
+        if(p_bullet)
+        {
+            delete p_bullet;
+            p_bullet=NULL;
         }
     }
 }

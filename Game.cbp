@@ -37,6 +37,10 @@
 		<Unit filename="BulletOject.cpp" />
 		<Unit filename="CommonFunc.cpp" />
 		<Unit filename="CommonFunc.h" />
+		<Unit filename="Dot.cpp" />
+		<Unit filename="Dot.h" />
+		<Unit filename="GUI.cpp" />
+		<Unit filename="GUI.h" />
 		<Unit filename="MainObject.cpp" />
 		<Unit filename="MainObject.h" />
 		<Unit filename="ThreatObject.cpp" />

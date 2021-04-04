@@ -6,6 +6,8 @@ ThreatObject::ThreatObject()
     width_frame_=0;
     height_frame_=0;
     frame_=0;
+    angle_move_=90;
+    die=0;
 }
 ThreatObject::~ThreatObject()
 {
@@ -51,44 +53,51 @@ void ThreatObject::Show(SDL_Renderer* des)
 
     SDL_Rect* current_clip=&frame_clip_[frame_];
 
-    SDL_Rect renderQuad= {rect_.x,rect_.y,width_frame_,height_frame_};
+    SDL_Rect renderQuad={rect_.x,rect_.y,width_frame_,height_frame_};
 
     SDL_RenderCopy(des,p_object_,current_clip,&renderQuad);
 }
 
-void ThreatObject::MoveThreat()
+void ThreatObject::MoveThreat_Type1()
 {
-    y_pos_+=y_val_;
-    /*if(x_pos_<0-width_frame_)
+    if(type==1)
     {
-        x_pos_=SCREEN_WIDTH+width_frame_;
+        y_pos_+=y_val_;
 
     }
-    else if(x_pos_>SCREEN_WIDTH+width_frame_)
+    else
     {
-        x_pos_=0-width_frame_;
-    }*/
-    if(y_pos_<0-height_frame_)
-    {
-        y_pos_=SCREEN_HEIGHT+height_frame_;
-
-    }
-    else if(y_pos_>SCREEN_HEIGHT+height_frame_)
-    {
-        y_pos_=0-height_frame_;
-        x_pos_=rand()%(SCREEN_WIDTH-width_frame_);
+        x_pos_+=x_val_;
     }
 }
 
-void ThreatObject::InitBullet(BulletObject*p_bullet1, SDL_Renderer* screen)
+void ThreatObject::InitBullet(SDL_Renderer* screen)
 {
-    p_bullet1->LoadImg("img//BulletThreat.png",screen);
-    p_bullet1->set_is_move(true);
-    p_bullet1->set_bullet_direction(BulletObject::Dir_Down);
-    p_bullet1->SetRect(x_pos_+30,y_pos_+20);
-    p_bullet1->set_y_val(1);
-    p_bullet1->set_x_val(1);
-    p_bullet_list1_.push_back(p_bullet1);
+    if(type==1)
+    {
+        if((int)y_pos_%200==0)
+        {
+
+            BulletObject*p_bullet1=new BulletObject();
+            p_bullet1->LoadImg("img//BulletThreat.png",screen);
+            p_bullet1->set_is_move(true);
+            p_bullet1->SetRect(x_pos_+30,y_pos_+20);
+            p_bullet1->set_y_val(3);
+            p_bullet_list1_.push_back(p_bullet1);
+        }
+    }
+    else
+    {
+        if((int)x_pos_%200==0)
+        {
+            BulletObject*p_bullet1=new BulletObject();
+            p_bullet1->LoadImg("img//BulletThreat.png",screen);
+            p_bullet1->set_is_move(true);
+            p_bullet1->SetRect(x_pos_+30,y_pos_+20);
+            p_bullet1->set_y_val(3);
+            p_bullet_list1_.push_back(p_bullet1);
+        }
+    }
 }
 
 void ThreatObject::MakeBullet(SDL_Renderer* screen,const int &x_limit,const int &y_limit)
@@ -115,3 +124,88 @@ void ThreatObject::MakeBullet(SDL_Renderer* screen,const int &x_limit,const int 
         }
     }
 }
+
+int ThreatObject::set_random_x_pos_()
+{
+    int random=rand()%2+1;
+    if(random==1)
+    {
+        return rand()%315;
+    }
+    else if(random==2)
+    {
+        return rand()%(715-315+1)+315;
+    }
+}
+
+int ThreatObject::set_random_y_pos_()
+{
+    int random=rand()%2+1;
+    if(random==1)
+    {
+        return rand()%250;
+    }
+    else if(random==2)
+    {
+        return rand()%(500-251+1)+251;
+    }
+}
+
+void ThreatObject::RemoveBullet(const int &index)
+{
+    if(p_bullet_list1_.size()>0 && index<p_bullet_list1_.size())
+    {
+        BulletObject*p_bullet=p_bullet_list1_.at(index);
+        p_bullet_list1_.erase(p_bullet_list1_.begin()+index);
+        if(p_bullet!=NULL)
+        {
+            delete p_bullet;
+            p_bullet=NULL;
+        }
+    }
+}
+void ThreatObject::random_type_threat()
+{
+    int random=rand()%2==1;
+    if(random==1)
+    {
+        type=1;
+    }
+    else
+    {
+        type=2;
+    }
+}
+
+void ThreatObject::set_stats(SDL_Renderer* screen)
+{
+    if(type==1)
+    {
+        LoadImg("img//SpaceThreat1.png",screen);
+        set_clip();
+        int rand_x=set_random_x_pos_();
+        set_x_pos_(rand_x);
+        set_y_pos_(-90);
+        set_y_val_(2);
+    }
+    else
+    {
+        LoadImg("img//SpaceThreat2.png",screen);
+        set_clip();
+        int rand_y=set_random_y_pos_();
+        int rand_x=rand()%2+1;
+        if(rand_x==1)
+        {
+            set_x_pos_(-90);
+            set_x_val_(1);
+        }
+        else
+        {
+            set_x_pos_(SCREEN_WIDTH);
+            set_x_val_(-1);
+        }
+        set_y_pos_(rand_y);
+    }
+}
+
+
