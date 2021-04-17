@@ -1,12 +1,11 @@
 #ifndef THREATOBJECT_H_INCLUDED
 #define THREATOBJECT_H_INCLUDED
 
-#include<iostream>
 #include "CommonFunc.h"
 #include "BaseObject.h"
 #include "BulletObject.h"
-#include <vector>
-
+#define Num_of_Frame_Enemy 1
+using namespace std;
 class ThreatObject:public BaseObject
 {
 public:
@@ -27,12 +26,13 @@ public:
 
     int get_x_pos_() const {return x_pos_;}
     int get_y_pos_() const {return y_pos_;}
+    int get_score() const {return score;}
 
     void set_x_val_(const float &xVal) {x_val_=xVal;}
     void set_y_val_(const float &yVal) {y_val_=yVal;}
     void set_stats(SDL_Renderer* screen);
 
-    bool LoadImg(std::string path, SDL_Renderer* screen);
+    bool LoadImg(string path, SDL_Renderer* screen);
     void Show(SDL_Renderer* des);
     void set_clip();
     void MoveThreat_Type1();
@@ -41,16 +41,16 @@ public:
     int increase_die() {return die++;}
 
     int get_die() {return die;}
-    std::vector<BulletObject*> get_bullet_list1() const {return p_bullet_list1_;}
-    std::vector<BulletObject*> get_bullet_list2() const {return p_bullet_list2_;}
+    vector< vector<BulletObject*> > get_bullet_list1() const {return p_bullet_list1_;}
 
     void ResetBullet(BulletObject *p_bullet);
 
-    void RemoveBullet(const int &index);
+    void RemoveBullet(const int &index1,const int &index2);
 
     void InitBullet(SDL_Renderer* screen);
     void MakeBullet(SDL_Renderer* screen,const int &x_border, const int &y_border);
 
+    void resizebullet();
 
 private:
     float x_pos_;
@@ -58,6 +58,7 @@ private:
 
     int die;
     int type;
+    int score;
 
     double angle_move_;
 
@@ -66,11 +67,18 @@ private:
 
     int width_frame_;
     int height_frame_;
+    int n;
 
-    SDL_Rect frame_clip_[1];
+
+    SDL_Rect frame_clip_[Num_of_Frame_Enemy];
     int frame_;
-    std::vector<BulletObject*> p_bullet_list1_;
-    std::vector<BulletObject*> p_bullet_list2_;
+
+    vector< vector< BulletObject* > > p_bullet_list1_;
+
+
+    unsigned long long CurrentTime;
+    unsigned long long LastTime;
+
 };
 
 #endif // THREATOBJECT_H_INCLUDED

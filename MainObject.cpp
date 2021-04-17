@@ -1,10 +1,11 @@
-#include<iostream>
 #include "MainObject.h"
+
+using namespace std;
 
 MainObject::MainObject()
 {
     frame_=0;
-    x_pos_=SCREEN_WIDTH/2;
+    x_pos_=SCREEN_WIDTH/2-32;
     y_pos_=SCREEN_HEIGHT-100;
     width_frame_=0;
     height_frame_=0;
@@ -21,7 +22,7 @@ MainObject::~MainObject()
 
 }
 
-bool MainObject::LoadImg(std::string path, SDL_Renderer* screen)
+bool MainObject::LoadImg(string path, SDL_Renderer* screen)
 {
     bool ret = BaseObject::LoadImg(path,screen);
 
@@ -66,7 +67,7 @@ void MainObject::Show(SDL_Renderer* des)
         LoadImg("img//spaceship_up.png",des);
     }
 
-    if(input_type_.left_==1 || input_type_.right_==1 || input_type_.down_==1 || input_type_.up_==1)
+    if(input_type_.left_==1 || input_type_.right_==1 || input_type_.down_==1 || input_type_.up_==1 || life==0)
     {
         frame_++;
     }
@@ -75,7 +76,7 @@ void MainObject::Show(SDL_Renderer* des)
         frame_=0;
     }
 
-    if(frame_>=6)
+    if(frame_>=8)
     {
         frame_=0;
     }
@@ -84,7 +85,7 @@ void MainObject::Show(SDL_Renderer* des)
 
     SDL_Rect* current_clip=&frame_clip_[frame_];
 
-    SDL_Rect renderQuad= {rect_.x,rect_.y,width_frame_,height_frame_};
+    SDL_Rect renderQuad={rect_.x,rect_.y,width_frame_,height_frame_};
 
     SDL_RenderCopy(des,p_object_,current_clip,&renderQuad);
 }
@@ -169,10 +170,10 @@ void MainObject::HandleInputAction(SDL_Event events, SDL_Renderer* screen)
         {
             BulletObject* p_bullet1=new BulletObject();
             p_bullet1->LoadImg("img//bullet.png",screen);
-            p_bullet1->SetRect(this->rect_.x+width_frame_-50,rect_.y+height_frame_*0.1);
+            p_bullet1->SetRect(rect_.x+width_frame_/2-18,rect_.y+height_frame_*0.1);
 
-            p_bullet1->set_x_val(2);
-            p_bullet1->set_y_val(2);
+            p_bullet1->set_x_val(3);
+            p_bullet1->set_y_val(3);
             p_bullet1->set_is_move(true);
 
             p_bullet_list1_.push_back(p_bullet1);

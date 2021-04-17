@@ -3,11 +3,15 @@
 
 #include<iostream>
 #include<SDL.h>
+#include <vector>
+#include<iomanip>
+#include <sstream>
 #include<cmath>
 #include<string>
 #include<SDL_image.h>
 #include<SDL_mixer.h>
 #include<SDL_ttf.h>
+using namespace std;
 static SDL_Window* g_window=NULL;
 static SDL_Renderer* g_screen=NULL;
 static SDL_Event g_event;
@@ -35,6 +39,7 @@ typedef struct Input
 namespace SDLCommonFunc
 {
     bool CheckCollision(const SDL_Rect &object1,const SDL_Rect &object2);
+    string number_to_string(int number);
 }
 
 

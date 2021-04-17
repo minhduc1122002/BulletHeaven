@@ -1,5 +1,6 @@
 #include "CommonFunc.h"
-#include<iostream>
+
+using namespace std;
 
 bool SDLCommonFunc::CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2)
 {
@@ -10,4 +11,11 @@ bool SDLCommonFunc::CheckCollision(const SDL_Rect& object1, const SDL_Rect& obje
     }
     return false;
 }
-
+std::string SDLCommonFunc::number_to_string(int number)
+{
+    stringstream ss;
+    ss << setw(6) << setfill('0') << number;
+    string val_score;
+    ss >> val_score;
+    return val_score;
+}

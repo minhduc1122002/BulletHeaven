@@ -3,6 +3,7 @@
 
 #include "BaseObject.h"
 #include "CommonFunc.h"
+using namespace std;
 class BulletObject : public BaseObject
 {
 public:
@@ -22,6 +23,7 @@ public:
 private:
     float x_val_;
     float y_val_;
+    double angle;
     bool is_move_;
 };
 

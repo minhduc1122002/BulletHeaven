@@ -1,5 +1,5 @@
 #include "BulletObject.h"
-#include<iostream>
+using namespace std;
 
 BulletObject::BulletObject()
 {
@@ -15,8 +15,24 @@ BulletObject::~BulletObject()
 
 void BulletObject::HandleMove(const int &x_border,const int &y_border, const double &angle)
 {
-    rect_.y+=y_val_*sin(angle*PI/180);
-    rect_.x+=x_val_*cos(angle*PI/180);
+    if(angle==90)
+    {
+      rect_.y+=y_val_;
+    }
+    else if(angle==-90)
+    {
+        rect_.y-=y_val_;
+    }
+    else if(angle==45)
+    {
+       rect_.x+=x_val_-1;
+       rect_.y+=y_val_;
+    }
+    else if(angle==135)
+    {
+        rect_.x-=x_val_-1;
+        rect_.y+=y_val_;
+    }
     if(rect_.y<0 || rect_.y>y_border)
     {
         is_move_=false;

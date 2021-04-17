@@ -1,62 +1,56 @@
 # depslib dependency file v1.0
-1617534713 source:c:\development\game\main.cpp
+1618626827 source:c:\development\game\main.cpp
 	<iostream>
-	<vector>
 	"CommonFunc.h"
 	"BaseObject.h"
 	"MainObject.h"
 	"ThreatObject.h"
-	"GUI.h"
+	"Text.h"
+	"Effect.h"
 
-1617462567 source:c:\development\game\commonfunc.cpp
+1618073057 source:c:\development\game\commonfunc.cpp
 	"CommonFunc.h"
-	<iostream>
 
-1617462567 c:\development\game\commonfunc.h
+1618621024 c:\development\game\commonfunc.h
 	<iostream>
 	<SDL.h>
+	<vector>
+	<iomanip>
+	<sstream>
 	<cmath>
 	<string>
 	<SDL_image.h>
 	<SDL_mixer.h>
 	<SDL_ttf.h>
 
-1617514119 source:c:\development\game\baseobject.cpp
+1617894549 source:c:\development\game\baseobject.cpp
 	"BaseObject.h"
-	<iostream>
 
-1617514119 c:\development\game\baseobject.h
+1617894549 c:\development\game\baseobject.h
 	"CommonFunc.h"
 
-1617460388 c:\development\game\mainobject.h
+1618461246 c:\development\game\mainobject.h
 	"CommonFunc.h"
 	"BaseObject.h"
 	"BulletObject.h"
-	<vector>
 
-1617514127 source:c:\development\game\mainobject.cpp
-	<iostream>
+1618624229 source:c:\development\game\mainobject.cpp
 	"MainObject.h"
 
-1617377089 source:c:\development\game\bulletoject.cpp
+1618407220 source:c:\development\game\bulletoject.cpp
 	"BulletObject.h"
-	<iostream>
 
-1617077781 c:\development\game\bulletobject.h
+1618232929 c:\development\game\bulletobject.h
 	"BaseObject.h"
 	"CommonFunc.h"
 
-1617522531 source:c:\development\game\threatobject.cpp
-	<iostream>
+1618626827 source:c:\development\game\threatobject.cpp
 	"ThreatObject.h"
-	"CommonFunc.h"
 
-1617446973 c:\development\game\threatobject.h
-	<iostream>
+1618626827 c:\development\game\threatobject.h
 	"CommonFunc.h"
 	"BaseObject.h"
 	"BulletObject.h"
-	<vector>
 
 1615737002 source:c:\development\game\timer.cpp
 	<iostream>
@@ -75,10 +69,30 @@
 	<iostream>
 	"CommonFunc.h"
 
-1617524629 source:c:\development\game\gui.cpp
+1617869996 source:c:\development\game\gui.cpp
 	<iostream>
 	"GUI.h"
 
 1617523767 c:\development\game\gui.h
 	"CommonFunc.h"
+
+1618072526 c:\development\game\text.h
+	"CommonFunc.h"
+
+1617893920 source:c:\development\game\score.cpp
+	"Score.h"
+
+1617893920 c:\development\game\score.h
+	"CommonFunc.h"
+	"Text.h"
+
+1618072526 source:c:\development\game\text.cpp
+	"Text.h"
+
+1618625590 source:c:\development\game\effect.cpp
+	"Effect.h"
+
+1618503704 c:\development\game\effect.h
+	"CommonFunc.h"
+	"BaseObject.h"
 
