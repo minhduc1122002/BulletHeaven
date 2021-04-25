@@ -1,7 +1,7 @@
 #ifndef TEXT_H_INCLUDED
 #define TEXT_H_INCLUDED
 
-#include"CommonFunc.h"
+#include"Game_Utils.h"
 using namespace std;
 class Text
 {

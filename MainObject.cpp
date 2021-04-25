@@ -9,12 +9,14 @@ MainObject::MainObject()
     y_pos_=SCREEN_HEIGHT-100;
     width_frame_=0;
     height_frame_=0;
-    status_=Go_Up;
-    input_type_.left_=0;
-    input_type_.right_=0;
-    input_type_.down_=0;
-    input_type_.up_=0;
+    status_=Normal;
+    input_type_.mouse_=0;
     life=3;
+    canspawnbullet=0;
+    CurrentTime=0;
+    LastTime=0;
+    PausedTime=0;
+    angle=-90;
 }
 
 MainObject::~MainObject()
@@ -47,27 +49,31 @@ void MainObject::set_clip()
         }
     }
 }
-
+void MainObject::got_hit(Mix_Chunk* dead)
+{
+    if(status_==Normal)
+    {
+        status_=Pause;
+        PausedTime=SDL_GetTicks();
+        life--;
+        Mix_PlayChannel(-1,dead,0);
+    }
+}
 void MainObject::Show(SDL_Renderer* des)
 {
-    if(status_==Turn_Right)
+    if(SDL_GetTicks()-PausedTime>=2000 && status_==Pause)
     {
-        LoadImg("img//spaceship_right.png",des);
+        status_=Normal;
     }
-    else if(status_==Turn_Left)
-    {
-        LoadImg("img//spaceship_left.png",des);
-    }
-    else if(status_==Go_Up)
+    if(status_==Normal)
     {
         LoadImg("img//spaceship_up.png",des);
     }
-    else if(status_==Go_Down)
+    else if(status_==Pause)
     {
-        LoadImg("img//spaceship_up.png",des);
+        LoadImg("img//spaceship_diedelay.png",des);
     }
-
-    if(input_type_.left_==1 || input_type_.right_==1 || input_type_.down_==1 || input_type_.up_==1 || life==0)
+    if(input_type_.mouse_==1)
     {
         frame_++;
     }
@@ -93,94 +99,51 @@ void MainObject::Show(SDL_Renderer* des)
 SDL_Rect MainObject::GetRectFrame()
 {
     SDL_Rect rect;
-    rect.x=rect_.x;
-    rect.y=rect_.y;
-    rect.w=width_frame_;
-    rect.h=height_frame_;
+    rect.x=rect_.x+15*width_frame_/32;
+    rect.y=rect_.y+15*height_frame_/32;
+    rect.w=width_frame_/16;
+    rect.h=height_frame_/16;
     return rect;
 }
 
 void MainObject::HandleInputAction(SDL_Event events, SDL_Renderer* screen)
 {
-    if(events.type==SDL_KEYDOWN)
+    if(events.type==SDL_MOUSEBUTTONDOWN || events.type==SDL_MOUSEBUTTONUP || events.type==SDL_MOUSEMOTION)
     {
-        switch (events.key.keysym.sym)
-        {
-        case SDLK_d:
-            {
-                status_=Turn_Right;
-                input_type_.right_=1;
-                input_type_.left_=0;
-            }
-            break;
-        case SDLK_a:
-            {
-                status_=Turn_Left;
-                input_type_.left_=1;
-                input_type_.right_=0;
-            }
-            break;
-        case SDLK_w:
-            {
-                status_=Go_Up;
-                input_type_.down_=0;
-                input_type_.up_=1;
-            }
-            break;
-        case SDLK_s:
-            {
-                status_=Go_Down;
-                input_type_.down_=1;
-                input_type_.up_=0;
-            }
-            break;
-        }
-    }
-    else if(events.type==SDL_KEYUP)
-    {
-        switch (events.key.keysym.sym)
-        {
-        case SDLK_d:
-            {
-                input_type_.right_=0;
-                status_=Go_Up;
-            }
-            break;
-        case SDLK_a:
-            {
-                input_type_.left_=0;
-                status_=Go_Up;
-            }
-            break;
-        case SDLK_w:
-            {
-                input_type_.up_=0;
-            }
-            break;
-        case SDLK_s:
-            {
-                input_type_.down_=0;
-            }
-            break;
-        }
+        input_type_.mouse_=1;
+        int x,y;
+        SDL_GetMouseState(&x,&y);
+        x_pos_=x-width_frame_/2;
+        y_pos_=y-height_frame_/2;
     }
     if(events.type==SDL_MOUSEBUTTONDOWN)
     {
         if(events.button.button==SDL_BUTTON_LEFT)
         {
-            BulletObject* p_bullet1=new BulletObject();
-            p_bullet1->LoadImg("img//bullet.png",screen);
-            p_bullet1->SetRect(rect_.x+width_frame_/2-18,rect_.y+height_frame_*0.1);
-
-            p_bullet1->set_x_val(3);
-            p_bullet1->set_y_val(3);
-            p_bullet1->set_is_move(true);
-
-            p_bullet_list1_.push_back(p_bullet1);
+            canspawnbullet=1;
         }
     }
+    else if(events.type==SDL_MOUSEBUTTONUP)
+    {
+        canspawnbullet=0;
+    }
 }
-
+void MainObject::SpawnBullet(SDL_Renderer* screen)
+{
+    CurrentTime=SDL_GetTicks();
+    if(canspawnbullet &&CurrentTime>LastTime+200)
+    {
+        BulletObject* p_bullet1=new BulletObject();
+        p_bullet1->LoadImg("img//bullet.png",screen);
+        p_bullet1->set_pos(rect_.x+width_frame_/2-18,rect_.y+height_frame_*0.1);
+        p_bullet1->set_angle(angle);
+        p_bullet1->set_x_val(3);
+        p_bullet1->set_y_val(3);
+        p_bullet1->set_is_move(true);
+        p_bullet_list1_.push_back(p_bullet1);
+        LastTime=CurrentTime;
+    }
+}
 void MainObject::HandleBullet1(SDL_Renderer* des)
 {
     for(int i=0;i<p_bullet_list1_.size();i++)
@@ -190,7 +153,7 @@ void MainObject::HandleBullet1(SDL_Renderer* des)
         {
             if(p_bullet1->get_is_move()==true)
             {
-                p_bullet1->HandleMove(SCREEN_WIDTH,SCREEN_HEIGHT,-90);
+                p_bullet1->HandleMove(SCREEN_WIDTH,SCREEN_HEIGHT);
                 p_bullet1->Render(des);
             }
             else
@@ -202,42 +165,6 @@ void MainObject::HandleBullet1(SDL_Renderer* des)
                     p_bullet1=NULL;
                 }
             }
-        }
-    }
-}
-
-void MainObject::MovePlayer()
-{
-    if(input_type_.left_==1)
-    {
-        x_pos_-=SPEED;
-        if(x_pos_<0)
-        {
-            x_pos_=0;
-        }
-    }
-    if(input_type_.right_==1)
-    {
-        x_pos_+=SPEED;
-        if(x_pos_>SCREEN_WIDTH-width_frame_)
-        {
-            x_pos_=SCREEN_WIDTH-width_frame_;
-        }
-    }
-    if(input_type_.down_==1)
-    {
-        y_pos_+=SPEED;
-        if(y_pos_>SCREEN_HEIGHT-height_frame_)
-        {
-            y_pos_=SCREEN_HEIGHT-height_frame_;
-        }
-    }
-    if(input_type_.up_==1)
-    {
-        y_pos_-=SPEED;
-        if(y_pos_<0)
-        {
-            y_pos_=0;
         }
     }
 }

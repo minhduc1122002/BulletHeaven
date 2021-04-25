@@ -35,16 +35,18 @@
 		<Unit filename="BaseObject.h" />
 		<Unit filename="BulletObject.h" />
 		<Unit filename="BulletOject.cpp" />
-		<Unit filename="CommonFunc.cpp" />
-		<Unit filename="CommonFunc.h" />
-		<Unit filename="Effect.cpp" />
-		<Unit filename="Effect.h" />
+		<Unit filename="Enemy.cpp" />
+		<Unit filename="Enemy.h" />
+		<Unit filename="EnemyArray.cpp" />
+		<Unit filename="EnemyArray.h" />
+		<Unit filename="Game_Utils.cpp" />
+		<Unit filename="Game_Utils.h" />
+		<Unit filename="Icon.cpp" />
+		<Unit filename="Icon.h" />
 		<Unit filename="MainObject.cpp" />
 		<Unit filename="MainObject.h" />
 		<Unit filename="Text.cpp" />
 		<Unit filename="Text.h" />
-		<Unit filename="ThreatObject.cpp" />
-		<Unit filename="ThreatObject.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

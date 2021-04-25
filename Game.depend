@@ -1,18 +1,19 @@
 # depslib dependency file v1.0
-1618626827 source:c:\development\game\main.cpp
-	<iostream>
-	"CommonFunc.h"
+1619368998 source:c:\development\game\main.cpp
+	"Game_Utils.h"
 	"BaseObject.h"
 	"MainObject.h"
-	"ThreatObject.h"
+	"Enemy.h"
 	"Text.h"
-	"Effect.h"
+	"Icon.h"
+	"EnemyArray.h"
 
-1618073057 source:c:\development\game\commonfunc.cpp
+1619323114 source:c:\development\game\commonfunc.cpp
 	"CommonFunc.h"
 
-1618621024 c:\development\game\commonfunc.h
+1619323114 c:\development\game\commonfunc.h
 	<iostream>
+	<fstream>
 	<SDL.h>
 	<vector>
 	<iomanip>
@@ -23,34 +24,36 @@
 	<SDL_mixer.h>
 	<SDL_ttf.h>
 
-1617894549 source:c:\development\game\baseobject.cpp
+1618582088 source:c:\development\game\baseobject.cpp
 	"BaseObject.h"
 
-1617894549 c:\development\game\baseobject.h
-	"CommonFunc.h"
+1619323818 c:\development\game\baseobject.h
+	"Game_Utils.h"
 
-1618461246 c:\development\game\mainobject.h
-	"CommonFunc.h"
+1619334805 c:\development\game\mainobject.h
+	"Game_Utils.h"
 	"BaseObject.h"
 	"BulletObject.h"
 
-1618624229 source:c:\development\game\mainobject.cpp
+1619334805 source:c:\development\game\mainobject.cpp
 	"MainObject.h"
 
-1618407220 source:c:\development\game\bulletoject.cpp
+1619359630 source:c:\development\game\bulletoject.cpp
 	"BulletObject.h"
 
-1618232929 c:\development\game\bulletobject.h
+1619357033 c:\development\game\bulletobject.h
 	"BaseObject.h"
-	"CommonFunc.h"
+	"Game_Utils.h"
 
-1618626827 source:c:\development\game\threatobject.cpp
+1619287272 source:c:\development\game\threatobject.cpp
 	"ThreatObject.h"
 
-1618626827 c:\development\game\threatobject.h
+1619238186 c:\development\game\threatobject.h
 	"CommonFunc.h"
 	"BaseObject.h"
 	"BulletObject.h"
+	"MainObject.h"
+	"Effect.h"
 
 1615737002 source:c:\development\game\timer.cpp
 	<iostream>
@@ -76,8 +79,8 @@
 1617523767 c:\development\game\gui.h
 	"CommonFunc.h"
 
-1618072526 c:\development\game\text.h
-	"CommonFunc.h"
+1619323841 c:\development\game\text.h
+	"Game_Utils.h"
 
 1617893920 source:c:\development\game\score.cpp
 	"Score.h"
@@ -86,13 +89,120 @@
 	"CommonFunc.h"
 	"Text.h"
 
-1618072526 source:c:\development\game\text.cpp
+1618582088 source:c:\development\game\text.cpp
 	"Text.h"
 
-1618625590 source:c:\development\game\effect.cpp
+1619239485 source:c:\development\game\effect.cpp
 	"Effect.h"
 
-1618503704 c:\development\game\effect.h
+1619239485 c:\development\game\effect.h
 	"CommonFunc.h"
 	"BaseObject.h"
+
+1618582088 source:c:\users\cuongrau\desktop\game\baseobject.cpp
+	"BaseObject.h"
+
+1618582088 c:\users\cuongrau\desktop\game\baseobject.h
+	"CommonFunc.h"
+
+1618682160 c:\users\cuongrau\desktop\game\commonfunc.h
+	<iostream>
+	<SDL.h>
+	<vector>
+	<iomanip>
+	<sstream>
+	<cmath>
+	<string>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+
+1618645653 source:c:\users\cuongrau\desktop\game\bulletoject.cpp
+	"BulletObject.h"
+
+1618645666 c:\users\cuongrau\desktop\game\bulletobject.h
+	"BaseObject.h"
+	"CommonFunc.h"
+
+1618582088 source:c:\users\cuongrau\desktop\game\commonfunc.cpp
+	"CommonFunc.h"
+
+1618582088 source:c:\users\cuongrau\desktop\game\effect.cpp
+	"Effect.h"
+
+1618582088 c:\users\cuongrau\desktop\game\effect.h
+	"CommonFunc.h"
+	"BaseObject.h"
+
+1618682024 source:c:\users\cuongrau\desktop\game\main.cpp
+	<iostream>
+	"CommonFunc.h"
+	"BaseObject.h"
+	"MainObject.h"
+	"ThreatObject.h"
+	"Text.h"
+	"Effect.h"
+
+1618582088 c:\users\cuongrau\desktop\game\mainobject.h
+	"CommonFunc.h"
+	"BaseObject.h"
+	"BulletObject.h"
+
+1618643450 c:\users\cuongrau\desktop\game\threatobject.h
+	"CommonFunc.h"
+	"BaseObject.h"
+	"BulletObject.h"
+
+1618582088 c:\users\cuongrau\desktop\game\text.h
+	"CommonFunc.h"
+
+1618645684 source:c:\users\cuongrau\desktop\game\mainobject.cpp
+	"MainObject.h"
+
+1618582088 source:c:\users\cuongrau\desktop\game\text.cpp
+	"Text.h"
+
+1618645653 source:c:\users\cuongrau\desktop\game\threatobject.cpp
+	"ThreatObject.h"
+
+1619326420 source:c:\development\game\game_utils.cpp
+	"Game_Utils.h"
+	"Enemy.h"
+
+1619368860 c:\development\game\game_utils.h
+	<iostream>
+	<fstream>
+	<SDL.h>
+	<vector>
+	<iomanip>
+	<sstream>
+	<cmath>
+	<string>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
+
+1619323799 source:c:\development\game\icon.cpp
+	"Icon.h"
+
+1619323805 c:\development\game\icon.h
+	"Game_Utils.h"
+	"BaseObject.h"
+
+1619370333 source:c:\development\game\enemy.cpp
+	"Enemy.h"
+
+1619363974 c:\development\game\enemy.h
+	"Game_Utils.h"
+	"BaseObject.h"
+	"BulletObject.h"
+	"MainObject.h"
+	"Icon.h"
+
+1619366690 source:c:\development\game\enemyarray.cpp
+	"EnemyArray.h"
+
+1619355183 c:\development\game\enemyarray.h
+	"Enemy.h"
+	"Game_Utils.h"
 
