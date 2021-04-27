@@ -1,12 +1,14 @@
 # depslib dependency file v1.0
-1619368998 source:c:\development\game\main.cpp
+1619545149 source:c:\development\game\main.cpp
 	"Game_Utils.h"
-	"BaseObject.h"
-	"MainObject.h"
+	"Texture.h"
+	"Character.h"
 	"Enemy.h"
 	"Text.h"
 	"Icon.h"
 	"EnemyArray.h"
+	"Collision.h"
+	"Button.h"
 
 1619323114 source:c:\development\game\commonfunc.cpp
 	"CommonFunc.h"
@@ -30,19 +32,19 @@
 1619323818 c:\development\game\baseobject.h
 	"Game_Utils.h"
 
-1619334805 c:\development\game\mainobject.h
+1619432123 c:\development\game\mainobject.h
 	"Game_Utils.h"
-	"BaseObject.h"
+	"Texture.h"
 	"BulletObject.h"
 
-1619334805 source:c:\development\game\mainobject.cpp
+1619432142 source:c:\development\game\mainobject.cpp
 	"MainObject.h"
 
 1619359630 source:c:\development\game\bulletoject.cpp
 	"BulletObject.h"
 
-1619357033 c:\development\game\bulletobject.h
-	"BaseObject.h"
+1619431591 c:\development\game\bulletobject.h
+	"Texture.h"
 	"Game_Utils.h"
 
 1619287272 source:c:\development\game\threatobject.cpp
@@ -165,11 +167,11 @@
 1618645653 source:c:\users\cuongrau\desktop\game\threatobject.cpp
 	"ThreatObject.h"
 
-1619326420 source:c:\development\game\game_utils.cpp
+1619541078 source:c:\development\game\game_utils.cpp
 	"Game_Utils.h"
 	"Enemy.h"
 
-1619368860 c:\development\game\game_utils.h
+1619541078 c:\development\game\game_utils.h
 	<iostream>
 	<fstream>
 	<SDL.h>
@@ -182,27 +184,65 @@
 	<SDL_mixer.h>
 	<SDL_ttf.h>
 
-1619323799 source:c:\development\game\icon.cpp
+1619432194 source:c:\development\game\icon.cpp
 	"Icon.h"
 
-1619323805 c:\development\game\icon.h
+1619432194 c:\development\game\icon.h
 	"Game_Utils.h"
-	"BaseObject.h"
+	"Texture.h"
 
-1619370333 source:c:\development\game\enemy.cpp
+1619543205 source:c:\development\game\enemy.cpp
 	"Enemy.h"
 
-1619363974 c:\development\game\enemy.h
+1619542749 c:\development\game\enemy.h
 	"Game_Utils.h"
-	"BaseObject.h"
-	"BulletObject.h"
-	"MainObject.h"
+	"Texture.h"
+	"Bullet.h"
+	"Character.h"
 	"Icon.h"
 
-1619366690 source:c:\development\game\enemyarray.cpp
+1619543779 source:c:\development\game\enemyarray.cpp
 	"EnemyArray.h"
 
-1619355183 c:\development\game\enemyarray.h
+1619538445 c:\development\game\enemyarray.h
 	"Enemy.h"
+	"Game_Utils.h"
+
+1619431928 c:\development\game\texture.h
+	"Game_Utils.h"
+
+1619431928 source:c:\development\game\texture.cpp
+	"Texture.h"
+
+1619544937 source:c:\development\game\character.cpp
+	"Character.h"
+
+1619544950 c:\development\game\character.h
+	"Game_Utils.h"
+	"Texture.h"
+	"Bullet.h"
+
+1619494130 source:c:\development\game\bullet.cpp
+	"Bullet.h"
+
+1619442962 c:\development\game\bullet.h
+	"Texture.h"
+	"Game_Utils.h"
+
+1619545539 c:\development\game\collision.h
+	"Enemy.h"
+	"Character.h"
+	"Bullet.h"
+	"Icon.h"
+	"Game_Utils.h"
+
+1619545539 source:c:\development\game\collision.cpp
+	"Collision.h"
+
+1619531486 source:c:\development\game\button.cpp
+	"Button.h"
+
+1619531486 c:\development\game\button.h
+	"Texture.h"
 	"Game_Utils.h"
 

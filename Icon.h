@@ -2,14 +2,14 @@
 #define EFFECT_H_INCLUDED
 
 #include "Game_Utils.h"
-#include "BaseObject.h"
+#include "Texture.h"
 using namespace std;
-class Effect : public BaseObject
+class Icon : public Texture
 {
 public:
-    Effect();
-    ~Effect();
-    virtual bool LoadImg(string path,SDL_Renderer* screen);
+    Icon();
+    ~Icon();
+    virtual bool LoadTexture(string path,SDL_Renderer* screen);
     int get_frame_width() const {return width_frame_;}
     int get_frame_height() const {return height_frame_;}
     void MoveEffect(const int &x_border,const int &y_border);

@@ -1,18 +1,18 @@
 #include "Icon.h"
 using namespace std;
-Effect::Effect()
+Icon::Icon()
 {
     width_frame_=0;
     height_frame_=0;
     is_move_=false;
 }
-Effect::~Effect()
+Icon::~Icon()
 {
 
 }
-bool Effect::LoadImg(string path, SDL_Renderer* screen)
+bool Icon::LoadTexture(string path, SDL_Renderer* screen)
 {
-    bool ret=BaseObject::LoadImg(path,screen);
+    bool ret=Texture::LoadTexture(path,screen);
     if(ret==true)
     {
         width_frame_=rect_.w;
@@ -21,7 +21,7 @@ bool Effect::LoadImg(string path, SDL_Renderer* screen)
     return ret;
 }
 
-void Effect::MoveEffect(const int &x_border,const int &y_border)
+void Icon::MoveEffect(const int &x_border,const int &y_border)
 {
     rect_.y+=2;
     if(rect_.y<0 || rect_.y>y_border)

@@ -31,10 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
-		<Unit filename="BaseObject.cpp" />
-		<Unit filename="BaseObject.h" />
-		<Unit filename="BulletObject.h" />
-		<Unit filename="BulletOject.cpp" />
+		<Unit filename="Bullet.cpp" />
+		<Unit filename="Bullet.h" />
+		<Unit filename="Button.cpp" />
+		<Unit filename="Button.h" />
+		<Unit filename="Character.cpp" />
+		<Unit filename="Character.h" />
+		<Unit filename="Collision.cpp" />
+		<Unit filename="Collision.h" />
 		<Unit filename="Enemy.cpp" />
 		<Unit filename="Enemy.h" />
 		<Unit filename="EnemyArray.cpp" />
@@ -43,10 +47,10 @@
 		<Unit filename="Game_Utils.h" />
 		<Unit filename="Icon.cpp" />
 		<Unit filename="Icon.h" />
-		<Unit filename="MainObject.cpp" />
-		<Unit filename="MainObject.h" />
 		<Unit filename="Text.cpp" />
 		<Unit filename="Text.h" />
+		<Unit filename="Texture.cpp" />
+		<Unit filename="Texture.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<code_completion />

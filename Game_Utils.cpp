@@ -41,11 +41,11 @@ void Game_Utils::UpdateHighScore(string path,const int& score, string& old_high_
 	HighScoreFile.open(path.c_str(), ios::out);
 
 	ConvertToInt >> oldHighScore;
-	if (score > oldHighScore)
+	if (score>oldHighScore)
 	{
-		oldHighScore = score;
+		oldHighScore=score;
 	}
-	newHighScore = Game_Utils::number_to_string(oldHighScore);
+	newHighScore=Game_Utils::number_to_string(oldHighScore);
 	old_high_score=newHighScore;
 	HighScoreFile << newHighScore;
 }

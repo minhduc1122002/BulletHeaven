@@ -2,13 +2,13 @@
 #define THREATOBJECT_H_INCLUDED
 
 #include "Game_Utils.h"
-#include "BaseObject.h"
-#include "BulletObject.h"
-#include "MainObject.h"
+#include "Texture.h"
+#include "Bullet.h"
+#include "Character.h"
 #include "Icon.h"
 #define Num_of_Frame_Enemy 1
 using namespace std;
-class Enemy:public BaseObject
+class Enemy:public Texture
 {
 public:
     Enemy();
@@ -32,7 +32,8 @@ public:
 
     //bullet
     bool canspawnbullet();
-    void MakeBullet(vector<BulletObject*> &bullet,SDL_Renderer* screen,MainObject &spaceship);
+    void MakeBullet(vector<Bullet*> &bullet,SDL_Renderer* screen,Character &spaceship);
+    void MakeBulletUponDeath(vector<Bullet*> &bullet,SDL_Renderer* screen);
 
     //movement
     void set_x_val_(const float &xVal) {x_val_=xVal;}
@@ -40,7 +41,7 @@ public:
     void MoveThreat();
 
     //texture
-    bool LoadImg(string path, SDL_Renderer* screen);
+    bool LoadTexture(string path, SDL_Renderer* screen);
     void Show(SDL_Renderer* des);
     void set_clip();
 
@@ -48,10 +49,11 @@ public:
     void increase_die() {die++;}
     bool check_die();
     int get_score() const {return score;}
-    void Generate_Health(vector<Effect*>&health,SDL_Renderer* screen);
+    void Generate_Health(vector<Icon*>&health,SDL_Renderer* screen);
 
     //angle
     void rotate_angle();
+    void rotate_angle2();
     void set_angle_val(const double& angle_val) {angle_val_=angle_val;}
     void set_angle_(const double& angle_) {angle=angle_;}
 
@@ -65,10 +67,12 @@ private:
     double y_limit_;
 
     double type;
+    bool reverse_direction;
 
     double angle;
     double angle_val_;
     double angle_move;
+    bool changespawn;
 
     int die;
     int score;
