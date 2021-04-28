@@ -3,6 +3,10 @@
 
 #include "Texture.h"
 #include "Game_Utils.h"
+#include "Enemy.h"
+#include "Icon.h"
+#include "Character.h"
+#include "Bullet.h"
 using namespace std;
 
 class Button : public Texture
@@ -17,6 +21,12 @@ public:
 	void HandlePlayButton(SDL_Event event,SDL_Renderer* screen,bool &menu,bool &play,bool &QuitMenu);
 	void HandleHelpButton(SDL_Event event,SDL_Renderer* screen,bool &menu,bool &help);
 	void HandleExitButton(SDL_Event event,SDL_Renderer* screen,bool &QuitMenu);
+	void HandleBackButton(SDL_Event event,SDL_Renderer* screen,bool &menu,bool &help);
+	void HandleRestartButton(SDL_Event event,SDL_Renderer* screen,
+                          vector<Enemy*>&Enemy_List,Character &spaceship,
+                          vector<Bullet*> &Bullet_List,vector<Icon*>&Health_List,
+                          int &wave,long &current_score,bool &GameOver);
+
 private:
     int width_frame_;
     int height_frame_;

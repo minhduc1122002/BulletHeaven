@@ -20,11 +20,10 @@ void Collision(vector<Enemy*>&Enemy_List,Character &spaceship,
             if(p_enemy!=NULL)
             {
                 SDL_Rect ThreatRect=p_enemy->GetRect();
-                bool Threat_to_Spaceship=Game_Utils::CheckCollision(spaceshipRect,ThreatRect);
+                bool Threat_to_Spaceship=CheckCollision(spaceshipRect,ThreatRect);
                 if(Threat_to_Spaceship)
                 {
-                    spaceship.got_hit();
-                    Mix_PlayChannel(4,dead,0);
+                    spaceship.got_hit(dead);
                     spaceship.SetRect(-100,SCREEN_HEIGHT-100);
                     if(spaceship.get_life()==0)
                     {
@@ -41,10 +40,10 @@ void Collision(vector<Enemy*>&Enemy_List,Character &spaceship,
         {
             SDL_Rect BulletRect=p_bullet->GetRect();
             SDL_Rect Main_Rect=spaceship.GetRectFrame();
-            bool ThreatBullet_to_spaceship=Game_Utils::CheckCollision(BulletRect,Main_Rect);
+            bool ThreatBullet_to_spaceship=CheckCollision(BulletRect,Main_Rect);
             if(ThreatBullet_to_spaceship)
             {
-                spaceship.got_hit();
+                spaceship.got_hit(dead);
                 Mix_PlayChannel(-1,dead,0);
                 if(spaceship.get_life()==0)
                 {
@@ -65,7 +64,7 @@ void Collision(vector<Enemy*>&Enemy_List,Character &spaceship,
             }
         }
     }
-    vector<Bullet*> spaceship_bullet_arr=spaceship.get_bullet_list1();
+    vector<Bullet*> spaceship_bullet_arr=spaceship.get_bullet_list();
     for(int i=0;i<spaceship_bullet_arr.size();i++)
     {
         Bullet*p_bullet=spaceship_bullet_arr.at(i);
@@ -79,7 +78,7 @@ void Collision(vector<Enemy*>&Enemy_List,Character &spaceship,
                     SDL_Rect ThreatRect;
                     ThreatRect=p_enemy->GetRect();
                     SDL_Rect BulletRect=p_bullet->GetRect();
-                    bool SpaceshipBullet_to_Threat=Game_Utils::CheckCollision(ThreatRect,BulletRect);
+                    bool SpaceshipBullet_to_Threat=CheckCollision(ThreatRect,BulletRect);
                     if(SpaceshipBullet_to_Threat)
                     {
                         p_enemy->increase_die();
@@ -109,7 +108,7 @@ void Collision(vector<Enemy*>&Enemy_List,Character &spaceship,
         {
             SDL_Rect HeartRect=p_health->GetRect();
             SDL_Rect MainRect=spaceship.GetRectFrame();
-            bool Heart_to_spaceship=Game_Utils::CheckCollision(HeartRect,MainRect);
+            bool Heart_to_spaceship=CheckCollision(HeartRect,MainRect);
             if(Heart_to_spaceship)
             {
                 spaceship.life_increase();

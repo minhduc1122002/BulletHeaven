@@ -13,7 +13,6 @@ Texture::~Texture()
 {
     Free();
 }
-
 bool Texture::LoadTexture(string path,SDL_Renderer* screen)
 {
     Free();
@@ -33,7 +32,6 @@ bool Texture::LoadTexture(string path,SDL_Renderer* screen)
     p_texture_=new_texture;
     return p_texture_!=NULL;
 }
-
 void Texture::MoveBackGround(SDL_Renderer* des,const SDL_Rect* clip /*- NULL*/)
 {
     SDL_Rect renderquad1={rect_.x,rect_.y,rect_.w,rect_.h};

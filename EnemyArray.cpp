@@ -198,7 +198,7 @@ void GenerateEnemy(vector<Enemy*> &Enemy_List,SDL_Renderer* screen,int &wave)
             }
             else if(random==8)
             {
-                EnemyArray_Type6(Enemy_List,screen);
+                EnemyArray_Type7(Enemy_List,screen);
             }
         }
         else

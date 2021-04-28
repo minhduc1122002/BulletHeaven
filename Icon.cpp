@@ -23,7 +23,7 @@ bool Icon::LoadTexture(string path, SDL_Renderer* screen)
 
 void Icon::MoveEffect(const int &x_border,const int &y_border)
 {
-    rect_.y+=2;
+    rect_.y+=1;
     if(rect_.y<0 || rect_.y>y_border)
     {
         is_move_=false;

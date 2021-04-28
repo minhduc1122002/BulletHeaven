@@ -8,7 +8,6 @@
 #include "Collision.h"
 #include "Button.h"
 using namespace std;
-
 Texture Background;
 Texture GameOverUI;
 Texture test_menu;
@@ -31,9 +30,12 @@ Text numberofhighscore;
 Text Lives;
 Text Wave;
 Text Paused;
+Text Rating;
 Button PlayButton;
 Button HelpButton;
 Button ExitButton;
+Button BackButton;
+Button RestartButton;
 
 bool InitData()
 {
@@ -147,8 +149,9 @@ int main( int argc, char *argv[] )
     Lives.SetColor(Text::REDCOLOR);
     Paused.SetColor(Text::WHITECOLOR);
     Wave.SetColor(Text::WHITECOLOR);
+    Rating.SetColor(Text::REDCOLOR);
 
-    string str_high_score=Game_Utils::GetHighScoreFromFile("high_score.txt");
+    string str_high_score=GetHighScoreFromFile("high_score.txt");
     string str_highscore="HI-SCORE";
     string str_currentscore="SCORE";
     string str_lives="HEALTH";
@@ -178,7 +181,6 @@ int main( int argc, char *argv[] )
     bool menu=true;
     bool help=false;
     bool QuitMenu=false;
-    SDL_Event event;
     while(!QuitMenu)
     {
         if(!Mix_Playing(1))
@@ -187,16 +189,16 @@ int main( int argc, char *argv[] )
         }
         if(menu)
         {
-            while(SDL_PollEvent(&event)!=0)
+            while(SDL_PollEvent(&g_event)!=0)
             {
-                if(event.type==SDL_QUIT)
+                if(g_event.type==SDL_QUIT)
                 {
                     QuitMenu=true;
 
                 }
-                PlayButton.HandlePlayButton(event,g_screen,menu,play,QuitMenu);
-                HelpButton.HandleHelpButton(event,g_screen,menu,help);
-                ExitButton.HandleExitButton(event,g_screen,QuitMenu);
+                PlayButton.HandlePlayButton(g_event,g_screen,menu,play,QuitMenu);
+                HelpButton.HandleHelpButton(g_event,g_screen,menu,help);
+                ExitButton.HandleExitButton(g_event,g_screen,QuitMenu);
             }
             PlayButton.SetRect(SCREEN_WIDTH/2-PlayButton.get_frame_width()/2,SCREEN_HEIGHT/2+110);
             HelpButton.SetRect(SCREEN_WIDTH/2-PlayButton.get_frame_width()/2,SCREEN_HEIGHT/2+210);
@@ -209,14 +211,20 @@ int main( int argc, char *argv[] )
         }
         if(help)
         {
-            while(SDL_PollEvent(&event)!=0)
+            while(SDL_PollEvent(&g_event)!=0)
             {
-                if(event.type==SDL_QUIT)
+                if(g_event.type==SDL_QUIT)
                 {
                     QuitMenu=true;
                 }
+                PlayButton.HandlePlayButton(g_event,g_screen,menu,play,QuitMenu);
+                BackButton.HandleBackButton(g_event,g_screen,menu,help);
             }
             test_help.Render(g_screen);
+            BackButton.SetRect(30,SCREEN_HEIGHT-BackButton.get_frame_height()-30);
+            PlayButton.SetRect(SCREEN_WIDTH-PlayButton.get_frame_width()-30,SCREEN_HEIGHT-BackButton.get_frame_height()-30);
+            PlayButton.Render(g_screen);
+            BackButton.Render(g_screen);
             SDL_RenderPresent(g_screen);
         }
     }
@@ -265,6 +273,7 @@ int main( int argc, char *argv[] )
                         }
                     }
                 }
+                test_pause.SetRect(0,SCREEN_HEIGHT/3-test_pause.GetRect().h);
                 test_pause.Render(g_screen);
                 SDL_RenderPresent(g_screen);
             }
@@ -300,12 +309,12 @@ int main( int argc, char *argv[] )
                 spaceship.HandleBullet1(g_screen);
                 Collision(Enemy_List,spaceship,Bullet_List,Health_List,g_screen,dead,hit,Power,current_score,GameOver);
 
-                Game_Utils::UpdateHighScore("high_score.txt",current_score,str_high_score);
+                UpdateHighScore("high_score.txt",current_score,str_high_score);
                 highscore.RenderText(g_screen,SCREEN_WIDTH/2-50,10);
                 currentscore.RenderText(g_screen,10,10);
                 Lives.RenderText(g_screen,SCREEN_WIDTH-120,10);
 
-                numberofcurrentscore.Set_Text(Game_Utils::number_to_string(current_score));
+                numberofcurrentscore.Set_Text(number_to_string(current_score));
                 numberofcurrentscore.LoadFromRenderText(general_font,g_screen);
                 numberofcurrentscore.RenderText(g_screen,10,35);
 
@@ -330,15 +339,27 @@ int main( int argc, char *argv[] )
                 {
                     play=false;
                 }
+                RestartButton.HandleRestartButton(g_event,g_screen,Enemy_List,spaceship,Bullet_List,Health_List,wave,current_score,GameOver);
+                ExitButton.HandleExitButton(g_event,g_screen,play);
              }
              GameOverUI.Render(g_screen);
-             numberofcurrentscore.Set_Text(Game_Utils::number_to_string(current_score));
+             RestartButton.SetRect(30,SCREEN_HEIGHT-RestartButton.get_frame_height()-30);
+             RestartButton.Render(g_screen);
+             ExitButton.SetRect(SCREEN_WIDTH-ExitButton.get_frame_width()-30,SCREEN_HEIGHT-ExitButton.get_frame_height()-30);
+             ExitButton.Render(g_screen);
+
+             numberofcurrentscore.Set_Text(number_to_string(current_score));
              numberofcurrentscore.LoadFromRenderText(paused_font,g_screen);
              numberofcurrentscore.RenderText(g_screen,SCREEN_WIDTH/2-50,SCREEN_HEIGHT/2-15);
 
-             Wave.Set_Text(Game_Utils::number_to_string(wave));
+             Wave.Set_Text(number_to_string(wave));
              Wave.LoadFromRenderText(paused_font,g_screen);
              Wave.RenderText(g_screen,SCREEN_WIDTH/2-50,SCREEN_HEIGHT/2-15+120);
+
+             Rating.Set_Text(RatingBaseOnScore(current_score));
+             Rating.LoadFromRenderText(paused_font,g_screen);
+             Rating.RenderText(g_screen,SCREEN_WIDTH/2,SCREEN_HEIGHT/2-15+230);
+
              SDL_RenderPresent(g_screen);
         }
     }

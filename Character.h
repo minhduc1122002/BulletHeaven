@@ -31,7 +31,7 @@ public:
     }
     //bullet
     void HandleInputAction(SDL_Event events, SDL_Renderer* screen);
-    vector<Bullet*> get_bullet_list1() const {return p_bullet_list1_;}
+    vector<Bullet*> get_bullet_list() const {return p_bullet_list_;}
     void HandleBullet1(SDL_Renderer* des);
     void SpawnBullet(SDL_Renderer* screen);
     void RemoveBullet(const int &index);
@@ -51,14 +51,12 @@ public:
         }
     }
     int get_life() {return life;}
-    void got_hit();
+    void got_hit(Mix_Chunk*dead);
+    void Reset();
     //frame
     int get_width_frame() const {return width_frame_;}
     int get_height_frame() const {return height_frame_;}
 private:
-    vector<Bullet*> p_bullet_list1_;
-    bool canspawnbullet;
-
     int x_pos_;
     int y_pos_;
     int width_frame_;
@@ -73,6 +71,9 @@ private:
     bool input_mouse_;
 
     double angle;
+
+    vector<Bullet*> p_bullet_list_;
+    bool canspawnbullet;
 
     unsigned long long CurrentTime;
     unsigned long long LastTime;

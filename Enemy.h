@@ -67,12 +67,12 @@ private:
     double y_limit_;
 
     double type;
-    bool reverse_direction;
 
     double angle;
     double angle_val_;
     double angle_move;
     bool changespawn;
+    bool reverse_direction;
 
     int die;
     int score;

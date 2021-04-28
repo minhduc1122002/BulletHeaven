@@ -25,16 +25,14 @@ const double PI  =3.141592653589793238463;
 const int COLOR_KEY_R=167;
 const int COLOR_KEY_G=175;
 const int COLOR_KEY_B=180;
-
 const int RENDER_DRAW_COLOR=255;
 
-namespace Game_Utils
-{
-    bool CheckCollision(const SDL_Rect &object1,const SDL_Rect &object2);
-    string number_to_string(int number);
-    string GetHighScoreFromFile(string path);
-    void UpdateHighScore(string path,const int& score, string& old_high_score);
-}
+bool CheckCollision(const SDL_Rect &object1,const SDL_Rect &object2);
+string number_to_string(int number);
+string GetHighScoreFromFile(string path);
+void UpdateHighScore(string path,const int& score, string& old_high_score);
+string RatingBaseOnScore(const long current_score);
+
 
 
 #endif // COMMONFUNC_H_INCLUDED

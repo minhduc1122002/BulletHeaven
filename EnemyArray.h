@@ -16,6 +16,7 @@ void EnemyArray_Type3(vector<Enemy*> &EnemyArray,SDL_Renderer* screen);
 void EnemyArray_Type4(vector<Enemy*> &EnemyArray,SDL_Renderer* screen);
 void EnemyArray_Type5(vector<Enemy*> &EnemyArray,SDL_Renderer* screen);
 void EnemyArray_Type6(vector<Enemy*> &EnemyArray,SDL_Renderer* screen);
+void EnemyArray_Type7(vector<Enemy*> &EnemyArray,SDL_Renderer* screen);
 void EnemyBoss(vector<Enemy*> &EnemyArray,SDL_Renderer* screen);
 
 void GenerateEnemy(vector<Enemy*> &Enemy_List,SDL_Renderer* screen,int &wave);

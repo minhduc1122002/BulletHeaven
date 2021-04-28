@@ -154,7 +154,7 @@ void Enemy::MakeBulletUponDeath(vector<Bullet*> &bullet,SDL_Renderer* screen)
     for(int i=0;i<12;i++)
     {
         Bullet*p_bullet=new Bullet();
-        if(type==1.1 || type==3.1)
+        if(type==1.1 || type==3.1 || type==7.1)
         {
             p_bullet->LoadTexture("img//BulletThreat.png",screen);
         }
@@ -279,7 +279,7 @@ void Enemy::MakeBullet(vector<Bullet*> &bullet,SDL_Renderer* screen,Character &s
     }
     else if(type==6.1)
     {
-        x_val_=0;
+        x_val_=1;
         if(die>=200 && die<300)
         {
             if(!changespawn)
@@ -369,7 +369,7 @@ void Enemy::MakeBullet(vector<Bullet*> &bullet,SDL_Renderer* screen,Character &s
         else if(die>=100 && die <200)
         {
             x_pos_=SCREEN_WIDTH/2-width_frame_/2;
-            x_val_=0;
+            x_val_=1;
             delay_shoot_time=150;
             for(int i=0;i<6;i++)
             {
@@ -492,7 +492,7 @@ void Enemy::set_stats(SDL_Renderer* screen)
         LoadTexture("img//SpaceThreat6.png",screen);
         set_clip();
         y_val_=2;
-        score=300;
+        score=500;
     }
     else if(type==3.1)
     {
@@ -513,7 +513,7 @@ void Enemy::set_stats(SDL_Renderer* screen)
         LoadTexture("img//SpaceThreat4.png",screen);
         set_clip();
         y_val_=2;
-        score=200;
+        score=300;
     }
     else if(type==6.1)
     {
@@ -521,14 +521,14 @@ void Enemy::set_stats(SDL_Renderer* screen)
         set_clip();
         y_val_=2;
         x_val_=1;
-        score=1000;
+        score=10000;
     }
     else if(type==7.1)
     {
         LoadTexture("img//SpaceThreat3.png",screen);
         set_clip();
         y_val_=2;
-        score=100;
+        score=500;
     }
 }
 bool Enemy::check_die()
@@ -551,7 +551,7 @@ bool Enemy::check_die()
     }
     else if(type==5.1)
     {
-        if(die==3) return 1;
+        if(die==5) return 1;
     }
     else if(type==6.1)
     {
@@ -559,13 +559,13 @@ bool Enemy::check_die()
     }
     else if(type==7.1)
     {
-        if(die==3) return 1;
+        if(die==5) return 1;
     }
     return 0;
 }
 void Enemy::Generate_Health(vector<Icon*> &health,SDL_Renderer* screen)
 {
-    if(rand()%2+1==1)
+    if(rand()%10+1==1)
     {
         Icon *p_health=new Icon();
         p_health->LoadTexture("img//heart_icon.png",screen);
