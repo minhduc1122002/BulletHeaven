@@ -279,9 +279,9 @@ void Enemy::MakeBullet(vector<Bullet*> &bullet,SDL_Renderer* screen,Character &s
     }
     else if(type==6.1)
     {
-        x_val_=1;
         if(die>=200 && die<300)
         {
+            x_val_=1;
             if(!changespawn)
             {
                 delay_shoot_time=400;
@@ -368,7 +368,6 @@ void Enemy::MakeBullet(vector<Bullet*> &bullet,SDL_Renderer* screen,Character &s
         }
         else if(die>=100 && die <200)
         {
-            x_pos_=SCREEN_WIDTH/2-width_frame_/2;
             x_val_=1;
             delay_shoot_time=150;
             for(int i=0;i<6;i++)

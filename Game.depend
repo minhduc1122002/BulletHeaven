@@ -191,7 +191,7 @@
 	"Game_Utils.h"
 	"Texture.h"
 
-1619589648 source:c:\development\game\enemy.cpp
+1619668623 source:c:\development\game\enemy.cpp
 	"Enemy.h"
 
 1619589412 c:\development\game\enemy.h
@@ -201,7 +201,7 @@
 	"Character.h"
 	"Icon.h"
 
-1619577983 source:c:\development\game\enemyarray.cpp
+1619668659 source:c:\development\game\enemyarray.cpp
 	"EnemyArray.h"
 
 1619546179 c:\development\game\enemyarray.h
@@ -249,104 +249,4 @@
 	"Icon.h"
 	"Character.h"
 	"Bullet.h"
-
-1619494130 source:c:\users\mr.cuong\desktop\gameproject-sdl2\bullet.cpp
-	"Bullet.h"
-
-1619442962 c:\users\mr.cuong\desktop\gameproject-sdl2\bullet.h
-	"Texture.h"
-	"Game_Utils.h"
-
-1619431928 c:\users\mr.cuong\desktop\gameproject-sdl2\texture.h
-	"Game_Utils.h"
-
-1619589705 c:\users\mr.cuong\desktop\gameproject-sdl2\game_utils.h
-	<iostream>
-	<fstream>
-	<SDL.h>
-	<vector>
-	<iomanip>
-	<sstream>
-	<cmath>
-	<string>
-	<SDL_image.h>
-	<SDL_mixer.h>
-	<SDL_ttf.h>
-
-1619591616 source:c:\users\mr.cuong\desktop\gameproject-sdl2\button.cpp
-	"Button.h"
-
-1619580324 c:\users\mr.cuong\desktop\gameproject-sdl2\button.h
-	"Texture.h"
-	"Game_Utils.h"
-	"Enemy.h"
-	"Icon.h"
-	"Character.h"
-	"Bullet.h"
-
-1619589412 c:\users\mr.cuong\desktop\gameproject-sdl2\enemy.h
-	"Game_Utils.h"
-	"Texture.h"
-	"Bullet.h"
-	"Character.h"
-	"Icon.h"
-
-1619589412 c:\users\mr.cuong\desktop\gameproject-sdl2\character.h
-	"Game_Utils.h"
-	"Texture.h"
-	"Bullet.h"
-
-1619432194 c:\users\mr.cuong\desktop\gameproject-sdl2\icon.h
-	"Game_Utils.h"
-	"Texture.h"
-
-1619589473 source:c:\users\mr.cuong\desktop\gameproject-sdl2\character.cpp
-	"Character.h"
-
-1619589807 source:c:\users\mr.cuong\desktop\gameproject-sdl2\collision.cpp
-	"Collision.h"
-
-1619580338 c:\users\mr.cuong\desktop\gameproject-sdl2\collision.h
-	"Enemy.h"
-	"Character.h"
-	"Bullet.h"
-	"Icon.h"
-	"Game_Utils.h"
-
-1619592273 source:c:\users\mr.cuong\desktop\gameproject-sdl2\enemy.cpp
-	"Enemy.h"
-
-1619577983 source:c:\users\mr.cuong\desktop\gameproject-sdl2\enemyarray.cpp
-	"EnemyArray.h"
-
-1619546179 c:\users\mr.cuong\desktop\gameproject-sdl2\enemyarray.h
-	"Enemy.h"
-	"Game_Utils.h"
-
-1619589754 source:c:\users\mr.cuong\desktop\gameproject-sdl2\game_utils.cpp
-	"Game_Utils.h"
-	"Enemy.h"
-
-1619584456 source:c:\users\mr.cuong\desktop\gameproject-sdl2\icon.cpp
-	"Icon.h"
-
-1619591895 source:c:\users\mr.cuong\desktop\gameproject-sdl2\main.cpp
-	"Game_Utils.h"
-	"Texture.h"
-	"Character.h"
-	"Enemy.h"
-	"Text.h"
-	"Icon.h"
-	"EnemyArray.h"
-	"Collision.h"
-	"Button.h"
-
-1619323841 c:\users\mr.cuong\desktop\gameproject-sdl2\text.h
-	"Game_Utils.h"
-
-1618582088 source:c:\users\mr.cuong\desktop\gameproject-sdl2\text.cpp
-	"Text.h"
-
-1619589412 source:c:\users\mr.cuong\desktop\gameproject-sdl2\texture.cpp
-	"Texture.h"
 
