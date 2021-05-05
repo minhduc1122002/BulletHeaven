@@ -1,10 +1,11 @@
 #include "Icon.h"
 using namespace std;
+
 Icon::Icon()
 {
-    width_frame_=0;
-    height_frame_=0;
-    is_move_=false;
+    width_frame=0;
+    height_frame=0;
+    is_move=false;
 }
 Icon::~Icon()
 {
@@ -12,24 +13,24 @@ Icon::~Icon()
 }
 bool Icon::LoadTexture(string path, SDL_Renderer* screen)
 {
-    bool ret=Texture::LoadTexture(path,screen);
-    if(ret==true)
+    bool check_load=Texture::LoadTexture(path,screen);
+    if(check_load==true)
     {
-        width_frame_=rect_.w;
-        height_frame_=rect_.h;
+        width_frame=Rect.w;
+        height_frame=Rect.h;
     }
-    return ret;
+    return check_load;
 }
 
-void Icon::MoveEffect(const int &x_border,const int &y_border)
+void Icon::MoveEffect(const int &x_limit,const int &y_limit)
 {
-    rect_.y+=1;
-    if(rect_.y<0 || rect_.y>y_border)
+    Rect.y+=Speed;
+    if(Rect.y<0 || Rect.y>y_limit)
     {
-        is_move_=false;
+        is_move=false;
     }
-    if(rect_.x<0 || rect_.x>x_border)
+    if(Rect.x<0 || Rect.x>x_limit)
     {
-        is_move_=false;
+        is_move=false;
     }
 }

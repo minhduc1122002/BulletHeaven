@@ -15,8 +15,8 @@ public:
 	Button();
 	~Button();
 	virtual bool LoadTexture(string path,SDL_Renderer* screen);
-    int get_frame_width() const {return width_frame_;}
-    int get_frame_height() const {return height_frame_;}
+    int get_frame_width() const {return width_frame;}
+    int get_frame_height() const {return height_frame;}
 	bool IsInside(SDL_Event event);
 	void HandlePlayButton(SDL_Event event,SDL_Renderer* screen,bool &menu,bool &play,bool &QuitMenu);
 	void HandleHelpButton(SDL_Event event,SDL_Renderer* screen,bool &menu,bool &help);
@@ -28,8 +28,8 @@ public:
                           int &wave,long &current_score,bool &GameOver);
 
 private:
-    int width_frame_;
-    int height_frame_;
+    int width_frame;
+    int height_frame;
 };
 
 #endif // BUTTON_H_INCLUDED

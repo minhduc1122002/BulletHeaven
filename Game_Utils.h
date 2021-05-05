@@ -13,6 +13,7 @@
 #include<SDL_mixer.h>
 #include<SDL_ttf.h>
 using namespace std;
+
 static SDL_Window* g_window=NULL;
 static SDL_Renderer* g_screen=NULL;
 static SDL_Event g_event;

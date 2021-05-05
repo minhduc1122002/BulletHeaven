@@ -3,11 +3,11 @@ using namespace std;
 
 Texture::Texture()
 {
-    p_texture_=NULL;
-    rect_.x=0;
-    rect_.y=0;
-    rect_.w=0;
-    rect_.h=0;
+    p_texture=NULL;
+    Rect.x=0;
+    Rect.y=0;
+    Rect.w=0;
+    Rect.h=0;
 }
 Texture::~Texture()
 {
@@ -24,39 +24,39 @@ bool Texture::LoadTexture(string path,SDL_Renderer* screen)
         new_texture=SDL_CreateTextureFromSurface(screen, load_surface);
         if(new_texture!=NULL)
         {
-            rect_.w=load_surface->w;
-            rect_.h=load_surface->h;
+            Rect.w=load_surface->w;
+            Rect.h=load_surface->h;
         }
         SDL_FreeSurface(load_surface);
     }
-    p_texture_=new_texture;
-    return p_texture_!=NULL;
+    p_texture=new_texture;
+    return p_texture!=NULL;
 }
-void Texture::MoveBackGround(SDL_Renderer* des,const SDL_Rect* clip /*- NULL*/)
+void Texture::MoveBackGround(SDL_Renderer* screen,const SDL_Rect* clip /*- NULL*/)
 {
-    SDL_Rect renderquad1={rect_.x,rect_.y,rect_.w,rect_.h};
-    SDL_RenderCopy(des,p_texture_,clip,&renderquad1);
-    SDL_Rect renderquad2={rect_.x,rect_.y-SCREEN_HEIGHT,rect_.w,rect_.h};
-    SDL_RenderCopy(des,p_texture_,clip,&renderquad2);
-    rect_.y+=1;
-    if(rect_.y>=SCREEN_HEIGHT)
+    SDL_Rect renderquad1={Rect.x,Rect.y,Rect.w,Rect.h};
+    SDL_RenderCopy(screen,p_texture,clip,&renderquad1);
+    SDL_Rect renderquad2={Rect.x,Rect.y-SCREEN_HEIGHT,Rect.w,Rect.h};
+    SDL_RenderCopy(screen,p_texture,clip,&renderquad2);
+    Rect.y+=1;
+    if(Rect.y>=SCREEN_HEIGHT)
     {
-        rect_.y=0;
+        Rect.y=0;
     }
 }
-void Texture::Render(SDL_Renderer* des,const SDL_Rect* clip /*- NULL*/)
+void Texture::Render(SDL_Renderer* screen,const SDL_Rect* clip /*- NULL*/)
 {
-    SDL_Rect renderquad1={rect_.x,rect_.y,rect_.w,rect_.h};
-    SDL_RenderCopy(des,p_texture_,clip,&renderquad1);
+    SDL_Rect renderquad1={Rect.x,Rect.y,Rect.w,Rect.h};
+    SDL_RenderCopy(screen,p_texture,clip,&renderquad1);
 }
 void Texture::Free()
 {
-    if(p_texture_!=NULL)
+    if(p_texture!=NULL)
     {
-        SDL_DestroyTexture(p_texture_);
-        p_texture_=NULL;
-        rect_.w=0;
-        rect_.h=0;
+        SDL_DestroyTexture(p_texture);
+        p_texture=NULL;
+        Rect.w=0;
+        Rect.h=0;
     }
 }
 

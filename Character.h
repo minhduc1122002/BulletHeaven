@@ -22,16 +22,16 @@ public:
     bool LoadTexture(string path, SDL_Renderer* screen);
     void Show(SDL_Renderer* des);
     void set_clip();
-    SDL_Rect GetRectFrame();
+    SDL_Rect GetHitBox();
     //positions
     void set_positions(const int x,const int y)
     {
-        x_pos_=x;
-        y_pos_=y;
+        x_pos=x;
+        y_pos=y;
     }
     //bullet
     void HandleInputAction(SDL_Event events, SDL_Renderer* screen);
-    vector<Bullet*> get_bullet_list() const {return p_bullet_list_;}
+    vector<Bullet*> get_bullet_list() const {return p_bullet_list;}
     void HandleBullet1(SDL_Renderer* des);
     void SpawnBullet(SDL_Renderer* screen);
     void RemoveBullet(const int &index);
@@ -51,28 +51,28 @@ public:
         }
     }
     int get_life() {return life;}
-    void got_hit(Mix_Chunk*dead);
+    void got_hit(Mix_Chunk* dead);
     void Reset();
     //frame
-    int get_width_frame() const {return width_frame_;}
-    int get_height_frame() const {return height_frame_;}
+    int get_width_frame() const {return width_frame;}
+    int get_height_frame() const {return height_frame;}
 private:
-    int x_pos_;
-    int y_pos_;
-    int width_frame_;
-    int height_frame_;
+    int x_pos;
+    int y_pos;
+    int width_frame;
+    int height_frame;
 
-    int frame_;
-    SDL_Rect frame_clip_[Num_of_Frame_Character];
+    int frame;
+    SDL_Rect frame_clip[Num_of_Frame_Character];
 
     int life;
-    int status_;
+    int status;
 
-    bool input_mouse_;
+    bool input_mouse;
 
     double angle;
 
-    vector<Bullet*> p_bullet_list_;
+    vector<Bullet*> p_bullet_list;
     bool canspawnbullet;
 
     unsigned long long CurrentTime;

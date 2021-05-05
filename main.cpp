@@ -8,6 +8,7 @@
 #include "Collision.h"
 #include "Button.h"
 using namespace std;
+
 Texture Background;
 Texture GameOverUI;
 Texture test_menu;

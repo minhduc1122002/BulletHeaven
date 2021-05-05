@@ -3,9 +3,9 @@ using namespace std;
 
 Bullet::Bullet()
 {
-    x_val_=0;
-    y_val_=0;
-    is_move_=false;
+    x_speed=0;
+    y_speed=0;
+    is_move=false;
     angle=90;
     type=1;
     starting_point=0;
@@ -31,32 +31,32 @@ void Bullet::HandleMove(const int &x_border,const int &y_border)
 {
     if(type==1)
     {
-        x_pos_+=x_val_*cos(angle*PI/180);
-        y_pos_+=y_val_*sin(angle*PI/180);
+        x_pos+=x_speed*cos(angle*PI/180);
+        y_pos+=y_speed*sin(angle*PI/180);
     }
     else if(type==2)
     {
-        y_pos_+=1;
-        x_pos_=50*sin(PI*y_pos_/100)+starting_point;
+        y_pos+=1;
+        x_pos=50*sin(PI*y_pos/100)+starting_point;
     }
     else if(type==3)
     {
-        x_pos_+=1;
-        y_pos_=50*sin(PI*x_pos_/100)+starting_point;
+        x_pos+=1;
+        y_pos=50*sin(PI*x_pos/100)+starting_point;
     }
     else if(type==4)
     {
-        x_pos_+=1;
-        y_pos_=50*sin(PI*x_pos_/100+PI)+starting_point;
+        x_pos+=1;
+        y_pos=50*sin(PI*x_pos/100+PI)+starting_point;
     }
-    if(y_pos_<0 || y_pos_>y_border)
+    if(y_pos<0 || y_pos>y_border)
     {
-        is_move_=false;
+        is_move=false;
     }
-    if(x_pos_<0 || x_pos_>x_border)
+    if(x_pos<0 || x_pos>x_border)
     {
-        is_move_=false;
+        is_move=false;
     }
-    rect_.x=x_pos_;
-    rect_.y=y_pos_;
+    Rect.x=x_pos;
+    Rect.y=y_pos;
 }

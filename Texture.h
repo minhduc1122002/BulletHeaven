@@ -8,26 +8,26 @@ class Texture
 public:
     Texture();
     ~Texture();
-    void SetRect(const int& x, const int& y)
+    void SetRect(const int &x, const int &y)
     {
-        rect_.x=x;
-        rect_.y=y;
+        Rect.x=x;
+        Rect.y=y;
     }
     SDL_Rect GetRect()
     {
-        return rect_;
+        return Rect;
     }
     SDL_Texture* GetTexture()
     {
-        return p_texture_;
+        return p_texture;
     }
     virtual bool LoadTexture(string path, SDL_Renderer* screen);
-    void MoveBackGround(SDL_Renderer* des,const SDL_Rect* clip=NULL);
-    void Render(SDL_Renderer* des,const SDL_Rect* clip=NULL);
+    void MoveBackGround(SDL_Renderer* screen,const SDL_Rect* clip=NULL);
+    void Render(SDL_Renderer* screen,const SDL_Rect* clip=NULL);
     void Free();
 protected:
-    SDL_Texture* p_texture_;
-    SDL_Rect rect_;
+    SDL_Texture* p_texture;
+    SDL_Rect Rect;
 };
 
 #endif // BASEOBJECT_H_INCLUDED

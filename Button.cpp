@@ -2,8 +2,8 @@
 using namespace std;
 Button::Button()
 {
-	width_frame_=0;
-    height_frame_=0;
+	width_frame=0;
+    height_frame=0;
 }
 Button::~Button()
 {
@@ -11,13 +11,13 @@ Button::~Button()
 }
 bool Button::LoadTexture(string path, SDL_Renderer* screen)
 {
-    bool ret=Texture::LoadTexture(path,screen);
-    if(ret==true)
+    bool check_load=Texture::LoadTexture(path,screen);
+    if(check_load==true)
     {
-        width_frame_=rect_.w;
-        height_frame_=rect_.h;
+        width_frame=Rect.w;
+        height_frame=Rect.h;
     }
-    return ret;
+    return check_load;
 }
 bool Button::IsInside(SDL_Event event)
 {
@@ -26,19 +26,19 @@ bool Button::IsInside(SDL_Event event)
 		int x, y;
 		SDL_GetMouseState(&x, &y);
 		bool inside=true;
-		if (x<rect_.x)
+		if (x<Rect.x)
 		{
 			inside=false;
 		}
-		else if (x>rect_.x+width_frame_)
+		else if (x>Rect.x+width_frame)
 		{
 			inside=false;
 		}
-		else if (y<rect_.y)
+		else if (y<Rect.y)
 		{
 			inside=false;
 		}
-		else if (y>rect_.y+height_frame_)
+		else if (y>Rect.y+height_frame)
 		{
 			inside=false;
 		}

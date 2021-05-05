@@ -15,19 +15,19 @@ public:
     ~Enemy();
 
     //frame
-    int get_width_frame() const {return width_frame_;}
-    int get_height_frame() const {return height_frame_;}
+    int get_width_frame() const {return width_frame;}
+    int get_height_frame() const {return height_frame;}
 
     //position
-    void set_x_pos_(const double &xPos) {x_pos_=xPos;}
-    void set_y_pos_(const double &yPos) {y_pos_=yPos;}
-    double get_x_pos_() const {return x_pos_;}
-    double get_y_pos_() const {return y_pos_;}
+    void set_x_pos(const double &xPos) {x_pos=xPos;}
+    void set_y_pos(const double &yPos) {y_pos=yPos;}
+    double get_x_pos() const {return x_pos;}
+    double get_y_pos() const {return y_pos;}
 
     //type
     void set_type_threat(const double type_) {type=type_;}
     double get_type_threat() const {return type;}
-    void set_y_limit(const double &yLimit) {y_limit_=yLimit;}
+    void set_y_limit(const double &yLimit) {y_limit=yLimit;}
     void set_stats(SDL_Renderer* screen);
 
     //bullet
@@ -36,8 +36,8 @@ public:
     void MakeBulletUponDeath(vector<Bullet*> &bullet,SDL_Renderer* screen);
 
     //movement
-    void set_x_val_(const float &xVal) {x_val_=xVal;}
-    void set_y_val_(const float &yVal) {y_val_=yVal;}
+    void set_x_speed(const float &xSpeed) {x_speed=xSpeed;}
+    void set_y_speed(const float &ySpeed) {y_speed=ySpeed;}
     void MoveThreat();
 
     //texture
@@ -53,23 +53,21 @@ public:
 
     //angle
     void rotate_angle();
-    void rotate_angle2();
-    void set_angle_val(const double& angle_val) {angle_val_=angle_val;}
-    void set_angle_(const double& angle_) {angle=angle_;}
+    void set_angle_rotate_speed(const double& angleSpeed) {angle_rotate_speed=angleSpeed;}
+    void set_angle(const double& angle_) {angle=angle_;}
 
 private:
-    double x_pos_;
-    double y_pos_;
-    double x_val_;
-    double y_val_;
+    double x_pos;
+    double y_pos;
+    double x_speed;
+    double y_speed;
 
-    double x_limit_;
-    double y_limit_;
+    double y_limit;
 
     double type;
 
     double angle;
-    double angle_val_;
+    double angle_rotate_speed;
     double angle_move;
     bool changespawn;
     bool reverse_direction;
@@ -78,11 +76,11 @@ private:
     int score;
     int delay_shoot_time;
 
-    int width_frame_;
-    int height_frame_;
+    int width_frame;
+    int height_frame;
 
-    SDL_Rect frame_clip_[Num_of_Frame_Enemy];
-    int frame_;
+    SDL_Rect frame_clip[Num_of_Frame_Enemy];
+    int frame;
 
     unsigned long long CurrentTime;
     unsigned long long LastTime;

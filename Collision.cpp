@@ -1,5 +1,6 @@
 #include "Collision.h"
 using namespace std;
+
 void Collision(vector<Enemy*>&Enemy_List,Character &spaceship,
                vector<Bullet*> &Bullet_List,vector<Icon*>&Health_List,
                SDL_Renderer* screen,Mix_Chunk* dead,Mix_Chunk* hit,Mix_Chunk* Power,long &current_score,
@@ -16,7 +17,7 @@ void Collision(vector<Enemy*>&Enemy_List,Character &spaceship,
             {
                 p_enemy->MakeBullet(Bullet_List,screen,spaceship);
             }
-            SDL_Rect spaceshipRect=spaceship.GetRectFrame();
+            SDL_Rect spaceshipRect=spaceship.GetHitBox();
             if(p_enemy!=NULL)
             {
                 SDL_Rect ThreatRect=p_enemy->GetRect();
@@ -39,7 +40,7 @@ void Collision(vector<Enemy*>&Enemy_List,Character &spaceship,
         if(p_bullet!=NULL)
         {
             SDL_Rect BulletRect=p_bullet->GetRect();
-            SDL_Rect Main_Rect=spaceship.GetRectFrame();
+            SDL_Rect Main_Rect=spaceship.GetHitBox();
             bool ThreatBullet_to_spaceship=CheckCollision(BulletRect,Main_Rect);
             if(ThreatBullet_to_spaceship)
             {
@@ -107,7 +108,7 @@ void Collision(vector<Enemy*>&Enemy_List,Character &spaceship,
         if(p_health!=NULL)
         {
             SDL_Rect HeartRect=p_health->GetRect();
-            SDL_Rect MainRect=spaceship.GetRectFrame();
+            SDL_Rect MainRect=spaceship.GetHitBox();
             bool Heart_to_spaceship=CheckCollision(HeartRect,MainRect);
             if(Heart_to_spaceship)
             {

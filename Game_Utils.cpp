@@ -1,6 +1,5 @@
 #include "Game_Utils.h"
 #include "Enemy.h"
-
 using namespace std;
 
 bool CheckCollision(const SDL_Rect& object1, const SDL_Rect& object2)
