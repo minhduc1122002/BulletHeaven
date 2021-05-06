@@ -1,6 +1,6 @@
 # BulletHeaven
 
-#Introduction
+# Introduction
 
 BulletHeaven is a shooter/bullet hell written in C++ using SDL2. 
 
@@ -14,6 +14,6 @@ BulletHeaven is a shooter/bullet hell written in C++ using SDL2.
 
 
 
-#Demo
+# Demo
 
 https://www.youtube.com/watch?v=SvHuqwkEoKU
